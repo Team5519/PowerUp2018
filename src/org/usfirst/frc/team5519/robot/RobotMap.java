@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import edu.wpi.first.wpilibj.PWMSpeedController;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -18,6 +20,44 @@ public class RobotMap {
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
+	
+	
+	// Motor Port Definitions
+	public static int kDriveMotorLeftPort = 1;
+	public static int kDriveMotorRightPort = 1;
+	
+	public static int kShooterMotorLeft1Port = 1;
+	public static int kShooterMotorLeft2Port = 1;
+	public static int kShooterMotorLeft3Port = 1;
+	public static int kShooterMotorRight1Port = 1;
+	public static int kShooterMotorRight2Port = 1;
+	public static int kShooterMotorRight3Port = 1;
+	
+	public static int kIntakeMotorLeftWheelPort = 1;
+	public static int kIntakeMotorLeftArmPort = 1;
+	public static int kIntakeMotorRightWheelPort = 1;
+	public static int kIntakeMotorRightArmPort = 1;
+	
+	public static int kClimberMotorWinchPort = 1;
+	
+	// Motor Controller Definitions
+	public static PWMSpeedController driveMotorLeft;
+	public static PWMSpeedController driveMotorRight;
+	
+	public static PWMSpeedController shooterMotorLeft1;
+	public static PWMSpeedController shooterMotorLeft2;
+	public static PWMSpeedController shooterMotorLeft3;
+	public static PWMSpeedController shooterMotorRight1;
+	public static PWMSpeedController shooterMotorRight2;
+	public static PWMSpeedController shooterMotorRight3;
+
+	public static PWMSpeedController intakeMotorLeftWheel;
+	public static PWMSpeedController intakeMotorLeftArm;
+	public static PWMSpeedController intakeMotorRightWheel;
+	public static PWMSpeedController intakeMotorRightArm;
+
+	public static PWMSpeedController climberMotorWinch;
+
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
