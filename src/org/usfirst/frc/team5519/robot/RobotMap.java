@@ -8,6 +8,9 @@
 package org.usfirst.frc.team5519.robot;
 
 import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -63,4 +66,23 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
+	
+	public static void init() {
+		driveMotorLeft = new Spark(kDriveMotorLeftPort);
+		driveMotorRight = new Spark(kDriveMotorRightPort);
+		
+		shooterMotorLeft1 = new VictorSP(kShooterMotorLeft1Port);
+		shooterMotorLeft2 = new VictorSP(kShooterMotorLeft2Port);
+		shooterMotorLeft3 = new VictorSP(kShooterMotorLeft3Port);
+		shooterMotorRight1 = new VictorSP(kShooterMotorRight1Port);
+		shooterMotorRight2 = new VictorSP(kShooterMotorRight2Port);
+		shooterMotorRight3 = new VictorSP(kShooterMotorRight3Port);
+		
+		intakeMotorLeftWheel = new Spark(kIntakeMotorLeftWheelPort);
+		intakeMotorLeftArm = new Talon(kIntakeMotorLeftArmPort);
+		intakeMotorRightWheel = new Spark(kIntakeMotorRightWheelPort);
+		intakeMotorRightArm = new Talon(kIntakeMotorRightArmPort);
+		
+		climberMotorWinch = new Talon(kClimberMotorWinchPort);
+	}
 }

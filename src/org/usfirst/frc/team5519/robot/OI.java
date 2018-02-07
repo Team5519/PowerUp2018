@@ -7,6 +7,14 @@
 
 package org.usfirst.frc.team5519.robot;
 
+//import org.usfirst.frc.team5519.robot.commands.ShootHigh;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -24,10 +32,23 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
+	public static final int kDriveStickPort = 0;	
+	public static final int kXboxControllerPort = 1;
+	
+	public static Joystick driveStick;
+	public static XboxController controller;
+	
+	// These are the buttons on the Joystick.
+	
+	// These are the buttons on the controller.
+	public static final int kToggleShootHighButtonNumber = 3;	// A
+	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
 	// three ways:
 
+	public static Button toggleShootHighButton;
+	
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenPressed(new ExampleCommand());
@@ -39,4 +60,14 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public OI() {
+		OI.driveStick = new Joystick(kDriveStickPort);
+		OI.controller = new XboxController(kXboxControllerPort);
+		
+		//Command ShootHigh = new ShootHigh();
+		//OI.toggleShootHighButton = new JoystickButton(OI.driveStick, kToggleShootHighButtonNumber);
+		//OI.toggleShootHighButton.toggleWhenPressed(ShootHigh);
+	}
+	
 }

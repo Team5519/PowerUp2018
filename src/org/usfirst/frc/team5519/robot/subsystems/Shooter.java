@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5519.robot.subsystems;
 
+import org.usfirst.frc.team5519.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -14,5 +16,42 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+	public void ShootHigh()	{
+		RobotMap.shooterMotorLeft1.set(1.0);
+		RobotMap.shooterMotorLeft2.set(1.0);
+		RobotMap.shooterMotorLeft3.set(1.0);
+		RobotMap.shooterMotorRight1.set(-1.0);
+		RobotMap.shooterMotorRight2.set(-1.0);
+		RobotMap.shooterMotorRight3.set(-1.0);
+	}
+	
+	public void ShootLow()	{
+		RobotMap.shooterMotorLeft1.set(0.6);
+		RobotMap.shooterMotorLeft2.set(0.6);
+		RobotMap.shooterMotorLeft3.set(0.6);
+		RobotMap.shooterMotorRight1.set(-0.6);
+		RobotMap.shooterMotorRight2.set(-0.6);
+		RobotMap.shooterMotorRight3.set(-0.6);
+	}
+
+	public void ReverseLow()	{
+		RobotMap.shooterMotorLeft1.set(-0.6);
+		RobotMap.shooterMotorLeft2.set(-0.6);
+		RobotMap.shooterMotorLeft3.set(-0.6);
+		RobotMap.shooterMotorRight1.set(0.6);
+		RobotMap.shooterMotorRight2.set(0.6);
+		RobotMap.shooterMotorRight3.set(0.6);
+	}
+
+	public void stop()	{
+		RobotMap.shooterMotorLeft1.set(0.0);
+		RobotMap.shooterMotorLeft2.set(0.0);
+		RobotMap.shooterMotorLeft3.set(0.0);
+		RobotMap.shooterMotorRight1.set(0.0);
+		RobotMap.shooterMotorRight2.set(0.0);
+		RobotMap.shooterMotorRight3.set(0.0);
+	}
+
 }
 
