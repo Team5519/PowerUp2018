@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5519.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5519.robot.subsystems.Climber;
+import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
 import org.usfirst.frc.team5519.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5519.robot.subsystems.Intake;
 import org.usfirst.frc.team5519.robot.subsystems.Shooter;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
     public static Shooter shooter;
     public static Intake intake;
     public static Climber climber;
+    public static DriveBase5519 driveBase;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -42,12 +44,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		
 		RobotMap.init ();
 		shooter = new Shooter();
         intake = new Intake();
         climber = new Climber();
-        
+        driveBase = new DriveBase5519();
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
