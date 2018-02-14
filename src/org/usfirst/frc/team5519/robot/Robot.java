@@ -46,8 +46,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init ();
 		shooter = new Shooter();
-        intake = new Intake();
-        climber = new Climber();
+        //intake = new Intake();
+        //climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new ExampleCommand());

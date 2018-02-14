@@ -26,22 +26,22 @@ public class RobotMap {
 	
 	
 	// Motor Port Definitions
-	public static int kDriveMotorLeftPort = 1;
-	public static int kDriveMotorRightPort = 1;
+	public static int kDriveMotorLeftPort = 8;
+	public static int kDriveMotorRightPort = 9;
 	
-	public static int kShooterMotorLeft1Port = 1;
-	public static int kShooterMotorLeft2Port = 1;
-	public static int kShooterMotorLeft3Port = 1;
-	public static int kShooterMotorRight1Port = 1;
+	public static int kShooterMotorLeft1Port = 5;
+	public static int kShooterMotorLeft2Port = 4;
+	public static int kShooterMotorLeft3Port = 3;
+	public static int kShooterMotorRight1Port = 2;
 	public static int kShooterMotorRight2Port = 1;
-	public static int kShooterMotorRight3Port = 1;
+	public static int kShooterMotorRight3Port = 0;
 	
-	public static int kIntakeMotorLeftWheelPort = 1;
-	public static int kIntakeMotorLeftArmPort = 1;
-	public static int kIntakeMotorRightWheelPort = 1;
-	public static int kIntakeMotorRightArmPort = 1;
+	public static int kIntakeMotorLeftWheelPort = 7;
+	public static int kIntakeMotorLeftArmPort = 1;		//to be determined 
+	public static int kIntakeMotorRightWheelPort = 6;	
+	public static int kIntakeMotorRightArmPort = 1;		//to be determined 
 	
-	public static int kClimberMotorWinchPort = 1;
+	public static int kClimberMotorWinchPort = 1;		//to be determined 
 	
 	// Motor Controller Definitions
 	public static PWMSpeedController driveMotorLeft;
@@ -78,11 +78,11 @@ public class RobotMap {
 		shooterMotorRight2 = new VictorSP(kShooterMotorRight2Port);
 		shooterMotorRight3 = new VictorSP(kShooterMotorRight3Port);
 		
-		intakeMotorLeftWheel = new Spark(kIntakeMotorLeftWheelPort);
-		intakeMotorLeftArm = new Talon(kIntakeMotorLeftArmPort);
-		intakeMotorRightWheel = new Spark(kIntakeMotorRightWheelPort);
-		intakeMotorRightArm = new Talon(kIntakeMotorRightArmPort);
+		//intakeMotorLeftWheel = new Spark(kIntakeMotorLeftWheelPort);
+		//intakeMotorLeftArm = new Talon(kIntakeMotorLeftArmPort);
+		//intakeMotorRightWheel = new Spark(kIntakeMotorRightWheelPort);
+		//intakeMotorRightArm = new Talon(kIntakeMotorRightArmPort);
 		
-		climberMotorWinch = new Talon(kClimberMotorWinchPort);
+		//climberMotorWinch = new Talon(kClimberMotorWinchPort);
 	}
 }

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import org.usfirst.frc.team5519.robot.commands.ShootHigh;
+
 //import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -41,7 +43,7 @@ public class OI {
 	// These are the buttons on the Joystick.
 	
 	// These are the buttons on the controller.
-	public static final int kToggleShootHighButtonNumber = 3;	// A
+	public static final int kToggleShootHighButtonNumber = 7;	// A
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -65,9 +67,9 @@ public class OI {
 		OI.driveStick = new Joystick(kDriveStickPort);
 		OI.controller = new XboxController(kXboxControllerPort);
 		
-		//Command ShootHigh = new ShootHigh();
-		//OI.toggleShootHighButton = new JoystickButton(OI.driveStick, kToggleShootHighButtonNumber);
-		//OI.toggleShootHighButton.toggleWhenPressed(ShootHigh);
+		Command ShootHigh = new ShootHigh();
+		OI.toggleShootHighButton = new JoystickButton(OI.driveStick, kToggleShootHighButtonNumber);
+		OI.toggleShootHighButton.toggleWhenPressed(ShootHigh);
 	}
 	
 }
