@@ -36,12 +36,14 @@ public class RobotMap {
 	public static int kShooterMotorRight2Port = 1;
 	public static int kShooterMotorRight3Port = 0;
 	
-	public static int kIntakeMotorLeftWheelPort = 7;
-	public static int kIntakeMotorLeftArmPort = 1;		//to be determined 
-	public static int kIntakeMotorRightWheelPort = 6;	
-	public static int kIntakeMotorRightArmPort = 1;		//to be determined 
+	public enum PinType { DigitalIO, PWM, AnalogIn, AnalogOut };
 	
-	public static int kClimberMotorWinchPort = 1;		//to be determined 
+	public static int kIntakeMotorLeftWheelPortNAVX = 9;
+	public static int kIntakeMotorLeftArmPortNAVX = 8;		
+	public static int kIntakeMotorRightWheelPortNAVX = 7;	
+	public static int kIntakeMotorRightArmPortNAVX = 6;		
+	
+	public static int kClimberMotorWinchPort = 7;		
 	
 	// Motor Controller Definitions
 	public static PWMSpeedController driveMotorLeft;
@@ -61,7 +63,54 @@ public class RobotMap {
 
 	public static PWMSpeedController climberMotorWinch;
 
-
+	
+	static int MAX_NAVX_MXP_DIGIO_PIN_NUMBER      = 9;
+	static int MAX_NAVX_MXP_ANALOGIN_PIN_NUMBER   = 3;
+	static int MAX_NAVX_MXP_ANALOGOUT_PIN_NUMBER  = 1;
+	static int NUM_ROBORIO_ONBOARD_DIGIO_PINS     = 10;
+	static int NUM_ROBORIO_ONBOARD_PWM_PINS       = 10;
+	static int NUM_ROBORIO_ONBOARD_ANALOGIN_PINS  = 4;
+	
+	/* getChannelFromPin( PinType, int ) - converts from a navX-MXP */
+    /* Pin type and number to the corresponding RoboRIO Channel     */
+    /* Number, which is used by the WPI Library functions.          */
+    
+    static int getChannelFromPin( PinType type, int io_pin_number ) 
+               throws IllegalArgumentException {
+        int roborio_channel = 0;
+        if ( io_pin_number < 0 ) {
+            throw new IllegalArgumentException("Error:  navX-MXP I/O Pin #");
+        }
+        switch ( type ) {
+        case DigitalIO:
+            if ( io_pin_number > MAX_NAVX_MXP_DIGIO_PIN_NUMBER ) {
+                throw new IllegalArgumentException("Error:  Invalid navX-MXP Digital I/O Pin #");
+            }
+            roborio_channel = io_pin_number + NUM_ROBORIO_ONBOARD_DIGIO_PINS + 
+                              (io_pin_number > 3 ? 4 : 0);
+            break;
+        case PWM:
+            if ( io_pin_number > MAX_NAVX_MXP_DIGIO_PIN_NUMBER ) {
+                throw new IllegalArgumentException("Error:  Invalid navX-MXP Digital I/O Pin #");
+            }
+            roborio_channel = io_pin_number + NUM_ROBORIO_ONBOARD_PWM_PINS;
+            break;
+        case AnalogIn:
+            if ( io_pin_number > MAX_NAVX_MXP_ANALOGIN_PIN_NUMBER ) {
+                throw new IllegalArgumentException("Error:  Invalid navX-MXP Analog Input Pin #");
+            }
+            roborio_channel = io_pin_number + NUM_ROBORIO_ONBOARD_ANALOGIN_PINS;
+            break;
+        case AnalogOut:
+            if ( io_pin_number > MAX_NAVX_MXP_ANALOGOUT_PIN_NUMBER ) {
+                throw new IllegalArgumentException("Error:  Invalid navX-MXP Analog Output Pin #");
+            }
+            roborio_channel = io_pin_number;            
+            break;
+        }
+        return roborio_channel;
+    }
+	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
@@ -78,10 +127,12 @@ public class RobotMap {
 		shooterMotorRight2 = new VictorSP(kShooterMotorRight2Port);
 		shooterMotorRight3 = new VictorSP(kShooterMotorRight3Port);
 		
-		//intakeMotorLeftWheel = new Spark(kIntakeMotorLeftWheelPort);
-		//intakeMotorLeftArm = new Talon(kIntakeMotorLeftArmPort);
-		//intakeMotorRightWheel = new Spark(kIntakeMotorRightWheelPort);
-		//intakeMotorRightArm = new Talon(kIntakeMotorRightArmPort);
+		intakeMotorLeftWheel = new Spark(getChannelFromPin(PinType.PWM,kIntakeMotorLeftWheelPortNAVX));
+		//intakeMotorLeftWheel = new Spark(6);
+		intakeMotorLeftArm = new Talon(getChannelFromPin(PinType.PWM,kIntakeMotorLeftArmPortNAVX));
+		intakeMotorRightWheel = new Spark(getChannelFromPin(PinType.PWM,kIntakeMotorRightWheelPortNAVX));
+		//intakeMotorRightWheel = new Spark(7);
+		intakeMotorRightArm = new Talon(getChannelFromPin(PinType.PWM,kIntakeMotorRightArmPortNAVX));
 		
 		//climberMotorWinch = new Talon(kClimberMotorWinchPort);
 	}

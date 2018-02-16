@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Climb extends Command {
+/**public class Climb extends Command {
 
     public Climb() {
         // Use requires() here to declare subsystem dependencies
@@ -40,3 +40,4 @@ public class Climb extends Command {
     	end();
     }
 }
+*/

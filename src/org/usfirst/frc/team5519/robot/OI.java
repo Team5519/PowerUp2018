@@ -7,7 +7,13 @@
 
 package org.usfirst.frc.team5519.robot;
 
+//import org.usfirst.frc.team5519.robot.commands.Climb;
+import org.usfirst.frc.team5519.robot.commands.CloseIntake;
+import org.usfirst.frc.team5519.robot.commands.EjectCube;
+import org.usfirst.frc.team5519.robot.commands.LoadCube;
 import org.usfirst.frc.team5519.robot.commands.ShootHigh;
+import org.usfirst.frc.team5519.robot.commands.ShootLow;
+import org.usfirst.frc.team5519.robot.commands.OpenIntake;
 
 //import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 
@@ -44,12 +50,27 @@ public class OI {
 	
 	// These are the buttons on the controller.
 	public static final int kToggleShootHighButtonNumber = 7;	// A
+	public static final int kToggleShootLowButtonNumber = 8;	// A
+	
+	public static final int kToggleIntakeWheelsInButtonNumber = 9;	// A
+	public static final int kToggleIntakeWheelsOutButtonNumber = 10;
+	
+	public static final int kToggleIntakeArmReleaseButtonNumber = 6;
+	public static final int kToggleIntakeArmCloseButtonNumber = 5;
+	
+	public static final int kToggleClimbButtonNumber = 4;
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
 	// three ways:
 
 	public static Button toggleShootHighButton;
+	public static Button toggleShootLowButton;
+	public static Button toggleLoadCubeButton;
+	public static Button toggleEjectCubeButton;
+	public static Button toggleArmReleaseButton;
+	public static Button toggleArmCloseButton;
+	public static Button toggleClimbButton;
 	
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
@@ -70,6 +91,28 @@ public class OI {
 		Command ShootHigh = new ShootHigh();
 		OI.toggleShootHighButton = new JoystickButton(OI.driveStick, kToggleShootHighButtonNumber);
 		OI.toggleShootHighButton.toggleWhenPressed(ShootHigh);
+		Command ShootLow = new ShootLow();
+		OI.toggleShootLowButton = new JoystickButton(OI.driveStick, kToggleShootLowButtonNumber);
+		OI.toggleShootLowButton.toggleWhenPressed(ShootLow);
+
+		Command LoadCube = new LoadCube();
+		OI.toggleLoadCubeButton = new JoystickButton(OI.driveStick, kToggleIntakeWheelsInButtonNumber);
+		OI.toggleLoadCubeButton.toggleWhenPressed(LoadCube);
+		Command EjectCube = new EjectCube();
+		OI.toggleEjectCubeButton = new JoystickButton(OI.driveStick, kToggleIntakeWheelsOutButtonNumber);
+		OI.toggleEjectCubeButton.toggleWhenPressed(EjectCube);
+		
+		Command OpenIntake = new OpenIntake();
+		OI.toggleArmReleaseButton = new JoystickButton(OI.driveStick, kToggleIntakeArmReleaseButtonNumber);
+		OI.toggleArmReleaseButton.toggleWhenPressed(OpenIntake);
+		Command CloseIntake = new CloseIntake();
+		OI.toggleArmCloseButton = new JoystickButton(OI.driveStick, kToggleIntakeArmCloseButtonNumber);
+		OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
+
+		/**Command Climb = new Climb();
+		OI.toggleClimbButton = new JoystickButton(OI.driveStick, kToggleClimbButtonNumber);
+		OI.toggleClimbButton.toggleWhenPressed(Climb);
+		*/
 	}
 	
 }

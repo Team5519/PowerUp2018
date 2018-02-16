@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,6 +20,8 @@ import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
 import org.usfirst.frc.team5519.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5519.robot.subsystems.Intake;
 import org.usfirst.frc.team5519.robot.subsystems.Shooter;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +38,8 @@ public class Robot extends TimedRobot {
     public static Intake intake;
     public static Climber climber;
     public static DriveBase5519 driveBase;
+    
+    AHRS ahrs;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -45,8 +51,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init ();
+        // GyroSamples
+        try {
+            /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
+            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+            ahrs = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
+        }
 		shooter = new Shooter();
-        //intake = new Intake();
+        intake = new Intake();
         //climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
