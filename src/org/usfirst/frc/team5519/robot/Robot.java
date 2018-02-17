@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
         }
 		shooter = new Shooter();
         intake = new Intake();
-        //climber = new Climber();
+        climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
 		m_chooser.addDefault("Default Auto", new ExampleCommand());

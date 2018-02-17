@@ -9,11 +9,14 @@ package org.usfirst.frc.team5519.robot;
 
 //import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntake;
+import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
+import org.usfirst.frc.team5519.robot.commands.DeployClimberHook;
 import org.usfirst.frc.team5519.robot.commands.EjectCube;
 import org.usfirst.frc.team5519.robot.commands.LoadCube;
 import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 import org.usfirst.frc.team5519.robot.commands.ShootLow;
 import org.usfirst.frc.team5519.robot.commands.OpenIntake;
+import org.usfirst.frc.team5519.robot.commands.RetractClimberHook;
 
 //import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 
@@ -59,6 +62,9 @@ public class OI {
 	public static final int kToggleIntakeArmCloseButtonNumber = 5;
 	
 	public static final int kToggleClimbButtonNumber = 4;
+	public static final int kToggleClimberLowArmButtonNumber = 3;
+	public static final int kToggleClimberTopArmButtonNumber = 4;
+	public static final int kToggleClimberHookButtonNumber = 5;
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -71,6 +77,9 @@ public class OI {
 	public static Button toggleArmReleaseButton;
 	public static Button toggleArmCloseButton;
 	public static Button toggleClimbButton;
+	public static Button toggleClimberLowArmButton;
+	public static Button toggleClimberTopArmButton;
+	public static Button toggleClimberHookButton;
 	
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
@@ -113,6 +122,16 @@ public class OI {
 		OI.toggleClimbButton = new JoystickButton(OI.driveStick, kToggleClimbButtonNumber);
 		OI.toggleClimbButton.toggleWhenPressed(Climb);
 		*/
+		Command DeployLowArm = new DeployClimberArm();
+		OI.toggleClimberLowArmButton = new JoystickButton(OI.driveStick, kToggleClimberLowArmButtonNumber);
+		OI.toggleClimberLowArmButton.toggleWhenPressed(DeployLowArm);
+		Command DeployTopArm = new DeployClimberHook();
+		OI.toggleClimberTopArmButton = new JoystickButton(OI.driveStick, kToggleClimberTopArmButtonNumber);
+		OI.toggleClimberTopArmButton.toggleWhenPressed(DeployTopArm);
+		Command RetractHook = new RetractClimberHook();
+		OI.toggleClimberHookButton = new JoystickButton(OI.driveStick, kToggleClimberHookButtonNumber);
+		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
+
 	}
 	
 }

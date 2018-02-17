@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
@@ -43,7 +44,11 @@ public class RobotMap {
 	public static int kIntakeMotorRightWheelPortNAVX = 7;	
 	public static int kIntakeMotorRightArmPortNAVX = 6;		
 	
-	public static int kClimberMotorWinchPort = 7;		
+	public static int kClimberMotorWinchPort = 7;	
+	public static int kClimberTopSolenoidInPortPCM = 0;
+	public static int kClimberTopSolenoidOutPortPCM = 1;
+	public static int kClimberLowSolenoidInPortPCM = 2;
+	public static int kClimberLowSolenoidOutPortPCM = 3;
 	
 	// Motor Controller Definitions
 	public static PWMSpeedController driveMotorLeft;
@@ -62,6 +67,8 @@ public class RobotMap {
 	public static PWMSpeedController intakeMotorRightArm;
 
 	public static PWMSpeedController climberMotorWinch;
+	public static DoubleSolenoid 	 climberTopSolenoid;
+	public static DoubleSolenoid 	 climberLowSolenoid;
 
 	
 	static int MAX_NAVX_MXP_DIGIO_PIN_NUMBER      = 9;
@@ -128,12 +135,12 @@ public class RobotMap {
 		shooterMotorRight3 = new VictorSP(kShooterMotorRight3Port);
 		
 		intakeMotorLeftWheel = new Spark(getChannelFromPin(PinType.PWM,kIntakeMotorLeftWheelPortNAVX));
-		//intakeMotorLeftWheel = new Spark(6);
 		intakeMotorLeftArm = new Talon(getChannelFromPin(PinType.PWM,kIntakeMotorLeftArmPortNAVX));
 		intakeMotorRightWheel = new Spark(getChannelFromPin(PinType.PWM,kIntakeMotorRightWheelPortNAVX));
-		//intakeMotorRightWheel = new Spark(7);
 		intakeMotorRightArm = new Talon(getChannelFromPin(PinType.PWM,kIntakeMotorRightArmPortNAVX));
 		
-		//climberMotorWinch = new Talon(kClimberMotorWinchPort);
+		climberMotorWinch = new Talon(kClimberMotorWinchPort);
+		climberTopSolenoid  = new DoubleSolenoid(kClimberTopSolenoidInPortPCM,kClimberTopSolenoidOutPortPCM);
+		climberLowSolenoid  = new DoubleSolenoid(kClimberLowSolenoidInPortPCM,kClimberLowSolenoidOutPortPCM);
 	}
 }
