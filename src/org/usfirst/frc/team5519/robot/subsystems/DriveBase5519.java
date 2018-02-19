@@ -1,10 +1,12 @@
 package org.usfirst.frc.team5519.robot.subsystems;
 
+import org.usfirst.frc.team5519.robot.Robot;
 import org.usfirst.frc.team5519.robot.RobotMap;
 import org.usfirst.frc.team5519.robot.commands.DriveWithJoystick;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,15 +16,25 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveBase5519 extends Subsystem {
 
-	AHRS ahrs;
+	private double kP = -0.03;
+	private AHRS gyro;
+	
+	
 	RobotDrive myDrive;
+	
+	private Encoder encoder;
+    private static final double kPulsesPerRotation = 100;	// Set via DIP
+    private static final double kWheelDiameter = 0.10;		// i.e. 10 cm
+    private static final double kDistancePerPulse = (3.14 * kWheelDiameter) / kPulsesPerRotation; // in meters
+
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveBase5519() {
+		gyro = Robot.ahrs;
 		myDrive = new RobotDrive(RobotMap.driveMotorLeft, RobotMap.driveMotorRight);
-        //myDrive.setSafetyEnabled(true); 	// Ensure motor safety
-        //myDrive.setExpiration(0.1);			// Suggested default safety timeout
+		encoder = RobotMap.EncoderAMT10V;
+		encoder.setDistancePerPulse(kDistancePerPulse);
 	}
 
     public void initDefaultCommand() {
@@ -31,11 +43,22 @@ public class DriveBase5519 extends Subsystem {
     	setDefaultCommand(new DriveWithJoystick());
     }
     
-	/**
-	 * Just Drive! Under joystick command. 
-	 * Code stolen from RobotDrive
-	 */
-	public void drive(GenericHID stick) {
+	 public void resetDriveSensors() {
+		 gyro.reset();
+		 encoder.reset();
+	 }
+	    
+	 public double getDistanceTraveled() {
+    	//return ahrs.getDisplacementY();
+	   	return encoder.getDistance();
+	 }
+	 
+	 public double getGyroAngle() {
+	    	//return ahrs.getDisplacementY();
+		   	return gyro.getAngle();
+		 }
+		 
+	public void joystickDrive(GenericHID stick) {
 		myDrive.arcadeDrive(stick);
 		/*
 		SmartDashboard.putNumber(   "Joystick/Y-Axis Value",       stick.getY());
@@ -56,31 +79,19 @@ public class DriveBase5519 extends Subsystem {
 	 * Drive using direct values. 
 	 * Code stolen from RobotDrive
 	 */
-	 public void directDrive(double moveValue, double targetAngle) {
-		//DriverStation.reportWarning("Drive Rotate Bot rotateAngle:  " + targetAngle, false);
-		/*
-	    double rotateValue = -0.200;
-	    if (targetAngle < 0.0) {
-	    	rotateValue = -1.3 * rotateValue;
-	        //DriverStation.reportWarning("Rotate in place applying CORRECTION.", false);
-	    }
-	    */
-	 	//myDrive.arcadeDrive(pidMoveValue(moveValue), pidRotateValue (targetAngle));
+	 public void autoDrive(double moveValue, double targetAngle) {
 		myDrive.arcadeDrive(moveValue, targetAngle);
 	 }
 
-	 public void stopDead() {
-		myDrive.arcadeDrive(0, 0);
-		/*
-		if (ahrs.getVelocityY() > 0.1) {
-		 	myDrive.arcadeDrive(-0.05, 0);			 			
-		} else if (ahrs.getVelocityY() < -0.1) {
-		 	myDrive.arcadeDrive(0.05, 0);			 			
-		} else {
-		 	myDrive.arcadeDrive(0, 0);			 			
-		}
-		*/
+	 public void autoDriveStraight(double moveValue) {
+		double angle = -1 * gyro.getAngle() * kP;
+		autoDrive(moveValue, angle);
 	 }
+	 
+	 public void stopDead() {
+		autoDrive(0,0);
+	 }
+	 
 
 }
 

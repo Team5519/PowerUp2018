@@ -8,6 +8,7 @@
 package org.usfirst.frc.team5519.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
@@ -26,9 +27,25 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 	
 	
-	// Motor Port Definitions
+	// Definitions for DRIVE Subsystem
+	
+	public final static double AUTO_FAST_SPEED = 0.7;
+	public final static double AUTO_MEDIUM_SPEED = 0.5;
+	public final static double AUTO_SLOW_SPEED = 0.3;
+	
+	public final static int kEncoderDioPortA = 0;
+	public final static int kEncoderDioPortB = 1;
+	
+	public static Encoder EncoderAMT10V;
+	
 	public static int kDriveMotorLeftPort = 8;
 	public static int kDriveMotorRightPort = 9;
+
+	public static PWMSpeedController driveMotorLeft;
+	public static PWMSpeedController driveMotorRight;
+
+	
+	// Definitions for SHOOTER Subsystem
 	
 	public static int kShooterMotorLeft1Port = 5;
 	public static int kShooterMotorLeft2Port = 4;
@@ -50,9 +67,6 @@ public class RobotMap {
 	public static int kClimberLowSolenoidInPortPCM = 2;
 	public static int kClimberLowSolenoidOutPortPCM = 3;
 	
-	// Motor Controller Definitions
-	public static PWMSpeedController driveMotorLeft;
-	public static PWMSpeedController driveMotorRight;
 	
 	public static PWMSpeedController shooterMotorLeft1;
 	public static PWMSpeedController shooterMotorLeft2;
@@ -69,6 +83,8 @@ public class RobotMap {
 	public static PWMSpeedController climberMotorWinch;
 	public static DoubleSolenoid 	 climberTopSolenoid;
 	public static DoubleSolenoid 	 climberLowSolenoid;
+	
+	
 
 	
 	static int MAX_NAVX_MXP_DIGIO_PIN_NUMBER      = 9;
@@ -142,5 +158,8 @@ public class RobotMap {
 		climberMotorWinch = new Talon(kClimberMotorWinchPort);
 		climberTopSolenoid  = new DoubleSolenoid(kClimberTopSolenoidInPortPCM,kClimberTopSolenoidOutPortPCM);
 		climberLowSolenoid  = new DoubleSolenoid(kClimberLowSolenoidInPortPCM,kClimberLowSolenoidOutPortPCM);
+		
+        EncoderAMT10V = new Encoder(kEncoderDioPortA,kEncoderDioPortB,false,Encoder.EncodingType.k2X);
+
 	}
 }

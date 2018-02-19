@@ -18,6 +18,8 @@ import org.usfirst.frc.team5519.robot.commands.ShootLow;
 import org.usfirst.frc.team5519.robot.commands.OpenIntake;
 import org.usfirst.frc.team5519.robot.commands.RetractClimberHook;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 //import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -42,6 +44,14 @@ public class OI {
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
+	
+    public static boolean doMessageDriverStation = true;
+    
+    public void messageDriverStation(String message) {
+    	if (doMessageDriverStation) {
+    	       DriverStation.reportWarning(message, false);
+    	}
+     }
 
 	public static final int kDriveStickPort = 0;	
 	public static final int kXboxControllerPort = 1;
@@ -93,7 +103,10 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
+	
 	public OI() {
+		
+		
 		OI.driveStick = new Joystick(kDriveStickPort);
 		OI.controller = new XboxController(kXboxControllerPort);
 		

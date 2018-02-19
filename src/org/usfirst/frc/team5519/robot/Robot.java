@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
     public static Climber climber;
     public static DriveBase5519 driveBase;
     
-    AHRS ahrs;
+    public static AHRS ahrs;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
