@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
 //import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntake;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
@@ -76,6 +79,10 @@ public class OI {
 	public static final int kToggleClimberTopArmButtonNumber = 4;
 	public static final int kToggleClimberHookButtonNumber = 5;
 	
+	public static final int kToggleAutoDriveStraightButtonNumber = 5;
+	public static final int kToggleAutoTurnRightButtonNumber = 5;
+	public static final int kToggleAutoTurnLeftButtonNumber = 5;
+	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
 	// three ways:
@@ -91,6 +98,10 @@ public class OI {
 	public static Button toggleClimberTopArmButton;
 	public static Button toggleClimberHookButton;
 	
+	public static Button toggleAutoDriveStraightButton;
+	public static Button toggleAutoTurnRightButton;
+	public static Button toggleAutoTurnLeftButton;
+	
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenPressed(new ExampleCommand());
@@ -105,8 +116,7 @@ public class OI {
 	
 	
 	public OI() {
-		
-		
+				
 		OI.driveStick = new Joystick(kDriveStickPort);
 		OI.controller = new XboxController(kXboxControllerPort);
 		
@@ -144,6 +154,16 @@ public class OI {
 		Command RetractHook = new RetractClimberHook();
 		OI.toggleClimberHookButton = new JoystickButton(OI.driveStick, kToggleClimberHookButtonNumber);
 		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
+		
+		Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
+		//OI.toggleAutoDriveStraightButton = new JoystickButton(OI.driveStick, kToggleAutoDriveStraightButtonNumber);
+		//OI.toggleAutoDriveStraightButton.toggleWhenPressed(AutoDriveStraight);
+		Command AutoTurnRight = new AutoTurnRight(90.0);
+		//OI.toggleAutoTurnRightButton = new JoystickButton(OI.driveStick, kToggleAutoTurnRightButtonNumber);
+		//OI.toggleAutoTurnRightButton.toggleWhenPressed(AutoTurnRight);
+		Command AutoTurnLeft = new AutoTurnLeft(90.0);
+		//OI.toggleAutoTurnLeftButton = new JoystickButton(OI.driveStick, kToggleAutoTurnLeftButtonNumber);
+		//OI.toggleAutoTurnLeftButton.toggleWhenPressed(AutoTurnLeft);
 
 	}
 	
