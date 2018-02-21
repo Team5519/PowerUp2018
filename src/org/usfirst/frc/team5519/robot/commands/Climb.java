@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-/**public class Climb extends Command {
+public class Climb extends Command {
 
     public Climb() {
         // Use requires() here to declare subsystem dependencies
@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.Climb();
+    	Robot.climber.startClimb();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.Stop();
+    	Robot.climber.stopClimb();
     }
 
     // Called when another command which requires one or more of the same
@@ -40,4 +40,3 @@ import edu.wpi.first.wpilibj.command.Command;
     	end();
     }
 }
-*/

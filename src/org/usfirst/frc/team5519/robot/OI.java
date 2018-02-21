@@ -10,6 +10,7 @@ package org.usfirst.frc.team5519.robot;
 import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
 import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
 import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
+import org.usfirst.frc.team5519.robot.commands.Climb;
 //import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntake;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
@@ -18,6 +19,7 @@ import org.usfirst.frc.team5519.robot.commands.EjectCube;
 import org.usfirst.frc.team5519.robot.commands.LoadCube;
 import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 import org.usfirst.frc.team5519.robot.commands.ShootLow;
+import org.usfirst.frc.team5519.robot.subsystems.Climber;
 import org.usfirst.frc.team5519.robot.commands.OpenIntake;
 import org.usfirst.frc.team5519.robot.commands.RetractClimberHook;
 
@@ -64,6 +66,8 @@ public class OI {
 	
 	// These are the buttons on the Joystick.
 	
+	public static final int kToggleTriggerButtonNumber = 1;
+	
 	// These are the buttons on the controller.
 	public static final int kToggleShootHighButtonNumber = 7;	// A
 	public static final int kToggleShootLowButtonNumber = 8;	// A
@@ -71,17 +75,17 @@ public class OI {
 	public static final int kToggleIntakeWheelsInButtonNumber = 9;	// A
 	public static final int kToggleIntakeWheelsOutButtonNumber = 10;
 	
-	public static final int kToggleIntakeArmReleaseButtonNumber = 6;
-	public static final int kToggleIntakeArmCloseButtonNumber = 5;
+	public static final int kToggleIntakeArmReleaseButtonNumber = 11;
+	public static final int kToggleIntakeArmCloseButtonNumber = 12;
 	
-	public static final int kToggleClimbButtonNumber = 4;
+	public static final int kToggleClimbButtonNumber = 2;
 	public static final int kToggleClimberLowArmButtonNumber = 3;
 	public static final int kToggleClimberTopArmButtonNumber = 4;
 	public static final int kToggleClimberHookButtonNumber = 5;
 	
-	public static final int kToggleAutoDriveStraightButtonNumber = 5;
-	public static final int kToggleAutoTurnRightButtonNumber = 5;
-	public static final int kToggleAutoTurnLeftButtonNumber = 5;
+	public static final int kToggleAutoDriveStraightButtonNumber = 12;
+	public static final int kToggleAutoTurnRightButtonNumber = 12;
+	public static final int kToggleAutoTurnLeftButtonNumber = 12;
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -141,10 +145,10 @@ public class OI {
 		OI.toggleArmCloseButton = new JoystickButton(OI.driveStick, kToggleIntakeArmCloseButtonNumber);
 		OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
 
-		/**Command Climb = new Climb();
+		Command Climb = new Climb();
 		OI.toggleClimbButton = new JoystickButton(OI.driveStick, kToggleClimbButtonNumber);
 		OI.toggleClimbButton.toggleWhenPressed(Climb);
-		*/
+		
 		Command DeployLowArm = new DeployClimberArm();
 		OI.toggleClimberLowArmButton = new JoystickButton(OI.driveStick, kToggleClimberLowArmButtonNumber);
 		OI.toggleClimberLowArmButton.toggleWhenPressed(DeployLowArm);
@@ -155,13 +159,13 @@ public class OI {
 		OI.toggleClimberHookButton = new JoystickButton(OI.driveStick, kToggleClimberHookButtonNumber);
 		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
 		
-		Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
+		//Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
 		//OI.toggleAutoDriveStraightButton = new JoystickButton(OI.driveStick, kToggleAutoDriveStraightButtonNumber);
 		//OI.toggleAutoDriveStraightButton.toggleWhenPressed(AutoDriveStraight);
-		Command AutoTurnRight = new AutoTurnRight(90.0);
+		//Command AutoTurnRight = new AutoTurnRight(90.0);
 		//OI.toggleAutoTurnRightButton = new JoystickButton(OI.driveStick, kToggleAutoTurnRightButtonNumber);
 		//OI.toggleAutoTurnRightButton.toggleWhenPressed(AutoTurnRight);
-		Command AutoTurnLeft = new AutoTurnLeft(90.0);
+		//Command AutoTurnLeft = new AutoTurnLeft(90.0);
 		//OI.toggleAutoTurnLeftButton = new JoystickButton(OI.driveStick, kToggleAutoTurnLeftButtonNumber);
 		//OI.toggleAutoTurnLeftButton.toggleWhenPressed(AutoTurnLeft);
 

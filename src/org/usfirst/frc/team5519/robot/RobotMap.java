@@ -77,8 +77,8 @@ public class RobotMap {
 	
 	public static int kClimberTopSolenoidInPortPCM = 0;
 	public static int kClimberTopSolenoidOutPortPCM = 1;
-	public static int kClimberLowSolenoidInPortPCM = 2;
-	public static int kClimberLowSolenoidOutPortPCM = 3;
+	public static int kClimberLowSolenoidInPortPCM = 3;
+	public static int kClimberLowSolenoidOutPortPCM = 2;
 		
 	// Controllers for the DRIVE Subsystem
 	

@@ -20,10 +20,10 @@ public class Intake extends Subsystem {
 
 	
 	public Intake() {
-		resetleftArmMaxLimitCounter();
-		resetleftArmMinLimitCounter();
-		resetRightArmMaxLimitCounter();
-		resetRightArmMinLimitCounter();
+		//resetleftArmMaxLimitCounter();
+		//resetleftArmMinLimitCounter();
+		//resetRightArmMaxLimitCounter();
+		//resetRightArmMinLimitCounter();
 	}
 
     public void initDefaultCommand() {

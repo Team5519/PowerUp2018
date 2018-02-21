@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 
 /**
  *
@@ -33,6 +34,7 @@ public class DriveBase5519 extends Subsystem {
 	public DriveBase5519() {
 		gyro = Robot.ahrs;
 		myDrive = new RobotDrive(RobotMap.driveMotorLeft, RobotMap.driveMotorRight);
+		//myDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 		encoder = RobotMap.EncoderAMT10V;
 		encoder.setDistancePerPulse(kDistancePerPulse);
 	}
