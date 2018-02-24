@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeOpenLeftArm extends Command {
+public class CloseIntakeLeft extends Command {
 
-    public IntakeOpenLeftArm() {
+    public CloseIntakeLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
@@ -17,23 +17,25 @@ public class IntakeOpenLeftArm extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Robot.intake.resetLeftArmMaxLimitCounter();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		if (!Robot.intake.isLeftArmAtMax()) {
-			Robot.intake.ArmRelease();
-		}
+    	Robot.intake.ArmCloseLeft();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.intake.isLeftArmAtMax();
+        //return false;
+    	boolean isMin = Robot.intake.isLeftArmAtMin();
+    	Robot.m_oi.messageDriverStation("COMMAND CloseIntakeLeft reported AT MAX is = " + isMin);
+        return isMin;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.ArmReleaseStop();
+    	Robot.intake.ArmCloseStopLeft();
     }
 
     // Called when another command which requires one or more of the same

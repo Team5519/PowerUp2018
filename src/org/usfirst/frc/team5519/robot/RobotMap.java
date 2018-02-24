@@ -179,7 +179,7 @@ public class RobotMap {
 		intakeLeftArmMaxLimitSwitch = new DigitalInput(kIntakeLeftArmMaxDioPort);
 		intakeLeftArmMinLimitSwitch = new DigitalInput(kIntakeLeftArmMinDioPort);
 		intakeRightArmMaxLimitSwitch = new DigitalInput(kIntakeRightArmMaxDioPort);
-		intakeRightArmMaxLimitSwitch = new DigitalInput(kIntakeRightArmMinDioPort);
+		intakeRightArmMinLimitSwitch = new DigitalInput(kIntakeRightArmMinDioPort);
 		
 		climberMotorWinch = new Talon(kClimberMotorWinchPort);
 		climberTopSolenoid  = new DoubleSolenoid(kClimberTopSolenoidInPortPCM,kClimberTopSolenoidOutPortPCM);

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -14,6 +16,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
 import org.usfirst.frc.team5519.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5519.robot.subsystems.Climber;
 import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
@@ -43,6 +47,8 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	
+	private UsbCamera camera;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -65,9 +71,12 @@ public class Robot extends TimedRobot {
         climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		camera = CameraServer.getInstance().startAutomaticCapture("Intake View",0);
+		camera = CameraServer.getInstance().startAutomaticCapture("Climber View",1);
+		
+		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		//SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
 	/**
@@ -98,7 +107,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		//m_autonomousCommand = m_chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -107,6 +116,40 @@ public class Robot extends TimedRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 
+		String autoSelected = SmartDashboard.getString("Auto Selector","Default");
+        m_oi.messageDriverStation("AUTONOMOUS COMMAND = " + autoSelected);
+		switch(autoSelected) { 
+			case "Auto Left 1": 
+			case "L1":
+				//autonomousCommand = new AutoLeftOne(RobotMap.START_POSITION_LEFT); 
+				break; 
+			case "Auto Right 1": 
+			case "R1":
+				//autonomousCommand = new AutoRightOne(RobotMap.START_POSITION_RIGHT); 
+				break; 
+			case "Auto Centre 1": 
+			case "C1":
+				//autonomousCommand = new AutoCenterOne(RobotMap.START_POSITION_CENTRE); 
+				break; 
+			case "Auto Align":
+			case "T1":
+				//autonomousCommand = new AutoAlignToPegTarget(RobotMap.START_POSITION_LEFT);
+				break;
+			case "Auto Drive 3m":
+			case "T2":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 2 Meters! ");
+				m_autonomousCommand = new AutoDriveStraightDistance(2.0);
+				break;
+			case "Auto To Peg":
+			case "T3":
+				//autonomousCommand = new AutoDriveToPegTarget();
+				break;
+			case "Auto Default": 
+			default:
+				//autonomousCommand = new AutoRightOne(RobotMap.START_POSITION_LEFT); 
+				break; 
+		}
+		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();

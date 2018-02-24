@@ -12,15 +12,17 @@ import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
 import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
 import org.usfirst.frc.team5519.robot.commands.Climb;
 //import org.usfirst.frc.team5519.robot.commands.Climb;
-import org.usfirst.frc.team5519.robot.commands.CloseIntake;
+import org.usfirst.frc.team5519.robot.commands.CloseIntakeLeft;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberHook;
 import org.usfirst.frc.team5519.robot.commands.EjectCube;
 import org.usfirst.frc.team5519.robot.commands.LoadCube;
+import org.usfirst.frc.team5519.robot.commands.OpenIntake;
 import org.usfirst.frc.team5519.robot.commands.ShootHigh;
 import org.usfirst.frc.team5519.robot.commands.ShootLow;
 import org.usfirst.frc.team5519.robot.subsystems.Climber;
-import org.usfirst.frc.team5519.robot.commands.OpenIntake;
+import org.usfirst.frc.team5519.robot.commands.OpenIntakeLeft;
+import org.usfirst.frc.team5519.robot.commands.OpenIntakeRight;
 import org.usfirst.frc.team5519.robot.commands.RetractClimberHook;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -72,11 +74,11 @@ public class OI {
 	public static final int kToggleShootHighButtonNumber = 7;	// A
 	public static final int kToggleShootLowButtonNumber = 8;	// A
 	
-	public static final int kToggleIntakeWheelsInButtonNumber = 9;	// A
-	public static final int kToggleIntakeWheelsOutButtonNumber = 10;
+	public static final int kToggleIntakeWheelsInButtonNumber = 12;	// A
+	public static final int kToggleIntakeWheelsOutButtonNumber = 11;
 	
-	public static final int kToggleIntakeArmReleaseButtonNumber = 11;
-	public static final int kToggleIntakeArmCloseButtonNumber = 12;
+	public static final int kToggleIntakeArmReleaseButtonNumber = 9;
+	public static final int kToggleIntakeArmCloseButtonNumber = 10;
 	
 	public static final int kToggleClimbButtonNumber = 2;
 	public static final int kToggleClimberLowArmButtonNumber = 3;
@@ -141,9 +143,12 @@ public class OI {
 		Command OpenIntake = new OpenIntake();
 		OI.toggleArmReleaseButton = new JoystickButton(OI.driveStick, kToggleIntakeArmReleaseButtonNumber);
 		OI.toggleArmReleaseButton.toggleWhenPressed(OpenIntake);
-		Command CloseIntake = new CloseIntake();
+		//OI.toggleArmReleaseButton.whenPressed(OpenIntake);
+		//Command CloseIntake = new CloseIntakeLeft();
+		Command CloseIntake = new OpenIntakeRight();		// FOR TESTING
 		OI.toggleArmCloseButton = new JoystickButton(OI.driveStick, kToggleIntakeArmCloseButtonNumber);
-		OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
+		//OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
+		OI.toggleArmCloseButton.whenPressed(CloseIntake);
 
 		Command Climb = new Climb();
 		OI.toggleClimbButton = new JoystickButton(OI.driveStick, kToggleClimbButtonNumber);

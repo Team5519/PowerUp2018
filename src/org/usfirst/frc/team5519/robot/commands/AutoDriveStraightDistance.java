@@ -27,8 +27,12 @@ public class AutoDriveStraightDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_oi.messageDriverStation("COMMAND AutoDriveStraightDistance reported distance is = " + Robot.driveBase.getDistanceTraveled());
-        if (Math.abs(Robot.driveBase.getDistanceTraveled()) > (requiredDistance-0.25)) {
+    	Robot.m_oi.messageDriverStation("COMMAND AutoDriveStraightDistance reported distance is = " + 
+    			Robot.driveBase.getDistanceTraveled());
+    	Robot.m_oi.messageDriverStation("COMMAND AutoDriveStraightDistance reported angle is = " + 
+    			Robot.driveBase.getGyroAngle());
+    	Robot.driveBase.dumpSensorData("AutoDriveStraightDistance");   	
+    	if (Math.abs(Robot.driveBase.getDistanceTraveled()) > (requiredDistance-0.25)) {
         	Robot.driveBase.autoDriveStraight(RobotMap.AUTO_SLOW_SPEED);
         } else {
         	Robot.driveBase.autoDriveStraight(RobotMap.AUTO_FAST_SPEED);
