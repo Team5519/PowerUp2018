@@ -72,13 +72,18 @@ public class OI {
 	
 	public static final int kToggleTriggerButtonNumber = 1;
 	public static final int kToggleDriveDirectionButtonNumber = 2;
+	
 	public static final int kToggleClimberLowArmButtonNumber = 7; // 7
 	public static final int kToggleClimberTopArmButtonNumber = 9; // 9
 	public static final int kToggleClimberHookButtonNumber = 11;  // 11
 	
+	
 	// These are the buttons on the controller.
-	public static final int kToggleShootHighButtonNumber = 1;	// X
+	public static final int kToggleShootHighButtonNumber = 2;	// X
 	public static final int kToggleShootLowButtonNumber = 3;	// B
+	
+	public static final int kToggleClimberWinchUpButtonNumber = 4;  // 11
+	public static final int kToggleClimberWinchDownButtonNumber = 1;  // 11
 	
 	public static final int kToggleIntakeWheelsInButtonNumber = 8;	// RT
 	public static final int kToggleIntakeWheelsOutButtonNumber = 7;	// LT
@@ -101,13 +106,15 @@ public class OI {
 	public static Button toggleArmReleaseButton;
 	public static Button toggleArmCloseButton;
 	
-	public static JoystickButton toggleClimberLowArmButton;
-	public static JoystickButton toggleClimberTopArmButton;
-	public static JoystickButton toggleClimberHookButton;
+	public static Button toggleClimberLowArmButton;
+	public static Button toggleClimberTopArmButton;
+	public static Button toggleClimberHookButton;
+	public static Button toggleClimberWinchUpButton;
+	public static Button toggleClimberWinchDownButton;
 	
-	public static Button toggleAutoDriveStraightButton;
-	public static Button toggleAutoTurnRightButton;
-	public static Button toggleAutoTurnLeftButton;
+	//public static Button toggleAutoDriveStraightButton;
+	//public static Button toggleAutoTurnRightButton;
+	//public static Button toggleAutoTurnLeftButton;
 	
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
@@ -164,6 +171,9 @@ public class OI {
 		Command RetractHook = new RetractClimberHook();
 		OI.toggleClimberHookButton = new JoystickButton(OI.driveStick, kToggleClimberHookButtonNumber);
 		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
+		Command Climb = new Climb();
+		OI.toggleClimberWinchUpButton = new JoystickButton(OI.controller, kToggleClimberWinchUpButtonNumber);
+		OI.toggleClimberWinchUpButton.toggleWhenPressed(RetractHook);
 		
 		//Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
 		//OI.toggleAutoDriveStraightButton = new JoystickButton(OI.driveStick, kToggleAutoDriveStraightButtonNumber);
