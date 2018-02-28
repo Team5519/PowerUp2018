@@ -95,7 +95,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void ArmReleaseRight()	{
-		RobotMap.intakeMotorRightArm.set(-0.4);		
+		RobotMap.intakeMotorRightArm.set(0.4);		
 	}
 
 	public void ArmReleaseStopLeft()	{

@@ -19,8 +19,8 @@ public class CloseIntake extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
 
-    	addParallel(new CloseIntakeRight());
-    	addSequential(new CloseIntakeLeft());
+    	addSequential(new CloseIntakeRight());
+    	addParallel(new CloseIntakeLeft());
     	//addSequential(new IntakeReset());			// FOR TESTING ONLY!
 
         // A command group will require all of the subsystems that each member
