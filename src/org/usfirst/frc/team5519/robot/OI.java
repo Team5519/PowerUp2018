@@ -17,6 +17,7 @@ import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntakeLeft;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberHook;
+import org.usfirst.frc.team5519.robot.commands.Drop;
 import org.usfirst.frc.team5519.robot.commands.EjectCube;
 import org.usfirst.frc.team5519.robot.commands.LoadCube;
 import org.usfirst.frc.team5519.robot.commands.OpenIntake;
@@ -173,7 +174,10 @@ public class OI {
 		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
 		Command Climb = new Climb();
 		OI.toggleClimberWinchUpButton = new JoystickButton(OI.controller, kToggleClimberWinchUpButtonNumber);
-		OI.toggleClimberWinchUpButton.toggleWhenPressed(RetractHook);
+		OI.toggleClimberWinchUpButton.toggleWhenPressed(Climb);
+		Command Drop = new Drop();
+		OI.toggleClimberWinchDownButton = new JoystickButton(OI.controller, kToggleClimberWinchDownButtonNumber);
+		OI.toggleClimberWinchDownButton.toggleWhenPressed(Drop);
 		
 		//Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
 		//OI.toggleAutoDriveStraightButton = new JoystickButton(OI.driveStick, kToggleAutoDriveStraightButtonNumber);
