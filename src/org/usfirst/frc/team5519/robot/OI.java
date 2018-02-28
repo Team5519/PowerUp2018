@@ -90,8 +90,8 @@ public class OI {
 	public static final int kToggleIntakeWheelsInButtonNumber = 1;	// RT
 	public static final int kToggleIntakeWheelsOutButtonNumber = 4;	// LT
 	
-	public static final int kToggleIntakeArmReleaseLButtonNumber = 5; // LB
-	public static final int kToggleIntakeArmCloseLButtonNumber = 7; 	 // RB
+	public static final int kToggleIntakeArmReleaseLButtonNumber = 7; // LB
+	public static final int kToggleIntakeArmCloseLButtonNumber = 5; 	 // RB
 	public static final int kToggleIntakeArmReleaseRButtonNumber = 8; // LB
 	public static final int kToggleIntakeArmCloseRButtonNumber = 6; 	 // RB
 	

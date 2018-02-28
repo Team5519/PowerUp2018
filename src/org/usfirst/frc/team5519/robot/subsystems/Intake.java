@@ -113,7 +113,7 @@ public class Intake extends Subsystem {
 	}
 	
 	public void ArmCloseRight()	{
-		RobotMap.intakeMotorRightArm.set(0.2);
+		RobotMap.intakeMotorRightArm.set(-0.2);
 	}
 	
 	public void ArmCloseStopLeft()	{
