@@ -33,8 +33,8 @@ public class DriveBase5519 extends Subsystem {
 	private Encoder encoder;
     private static final double kPulsesPerRotation = 100;	// Set via DIP
     private static final double kWheelDiameter = 0.10;		// i.e. 10 cm
-    //private static final double kDistancePerPulse = (3.14 * kWheelDiameter) / kPulsesPerRotation; // in meters
-    private static final double kDistancePerPulse = 0.20/100; // in meters -- For Testing
+    private static final double kDistancePerPulse = (3.14 * kWheelDiameter) / kPulsesPerRotation; // in meters
+    //private static final double kDistancePerPulse = 0.20/100; // in meters -- For Testing
 
 	
     // Put methods for controlling this subsystem

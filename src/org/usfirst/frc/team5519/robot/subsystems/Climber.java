@@ -34,16 +34,19 @@ public class Climber extends Subsystem {
     }
     
 	public void startClimb()	{
-		//RobotMap.climberTopSolenoid.set(DoubleSolenoid.Value.kOff);
-		//RobotMap.climberLowSolenoid.set(DoubleSolenoid.Value.kOff);
 		RobotMap.climberMotorWinch.set(-1.0);
 	}
 	
 	public void stopClimb()	{
-		//RobotMap.climberTopSolenoid.set(DoubleSolenoid.Value.kOff);
-		//RobotMap.climberLowSolenoid.set(DoubleSolenoid.Value.kOff);		
 		RobotMap.climberMotorWinch.set(0.0);
 	}
+	
+	public void startDrop()	{
+		RobotMap.climberMotorWinch.set(1.0);
+	}
 
+	public void stopDrop()	{
+		RobotMap.climberMotorWinch.set(0.0);
+	}
 }
 

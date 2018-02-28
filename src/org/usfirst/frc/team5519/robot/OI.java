@@ -147,13 +147,13 @@ public class OI {
 		
 		Command OpenIntake = new OpenIntake();
 		OI.toggleArmReleaseButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseButtonNumber);
-		OI.toggleArmReleaseButton.toggleWhenPressed(OpenIntake);
+		OI.toggleArmReleaseButton.whileHeld(OpenIntake);
 		//OI.toggleArmReleaseButton.whenPressed(OpenIntake);
 		//Command CloseIntake = new CloseIntakeLeft();
 		Command CloseIntake = new CloseIntake();		// FOR TESTING
 		OI.toggleArmCloseButton = new JoystickButton(OI.controller, kToggleIntakeArmCloseButtonNumber);
 		//OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
-		OI.toggleArmCloseButton.whenPressed(CloseIntake);
+		OI.toggleArmCloseButton.whileHeld(CloseIntake);
 		
 		Command DeployLowArm = new DeployClimberArm();
 		OI.toggleClimberLowArmButton = new JoystickButton(OI.driveStick, kToggleClimberLowArmButtonNumber);

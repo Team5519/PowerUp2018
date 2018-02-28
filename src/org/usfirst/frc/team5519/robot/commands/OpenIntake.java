@@ -12,16 +12,16 @@ public class OpenIntake extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new OpenIntakeLeft());
-    	addSequential(new IntakeReset());			// FOR TESTING ONLY!
-    	addSequential(new OpenIntakeRight());
-    	addSequential(new IntakeReset());			// FOR TESTING ONLY!
 
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+
+    	addParallel(new OpenIntakeLeft());
+    	addSequential(new OpenIntakeRight());
+    	//addSequential(new IntakeReset());			// FOR TESTING ONLY!
 
         // A command group will require all of the subsystems that each member
         // would require.

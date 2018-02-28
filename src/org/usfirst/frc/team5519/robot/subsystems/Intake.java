@@ -68,24 +68,21 @@ public class Intake extends Subsystem {
     }
 
 	public boolean isRightArmAtMax() {
-		//return (rightArmMaxLimitCounter.get() > 0);
-		return (leftArmMinLimitCounter.get() > 0);			// FOR TESTING ONLY
-
+		return (rightArmMaxLimitCounter.get() > 0);
     }
 
 	public boolean isRightArmAtMin() {
-		//return (rightArmMinLimitCounter.get() > 0);
-		return (leftArmMaxLimitCounter.get() > 0);			// FOR TESTING ONLY
+		return (rightArmMinLimitCounter.get() > 0);
     }
 
 	public void WheelsRotateLoadDirection()	{
-		RobotMap.intakeMotorLeftWheel.set(1.0);
-		RobotMap.intakeMotorRightWheel.set(-1.0);
+		RobotMap.intakeMotorLeftWheel.set(0.8);
+		RobotMap.intakeMotorRightWheel.set(-0.8);
 	}
 
 	public void WheelsRotateEjectDirection()	{
-		RobotMap.intakeMotorLeftWheel.set(-1.0);
-		RobotMap.intakeMotorRightWheel.set(1.0);
+		RobotMap.intakeMotorLeftWheel.set(-0.8);
+		RobotMap.intakeMotorRightWheel.set(0.8);
 	}
 
 	public void WheelsRotationStop()	{
@@ -94,11 +91,11 @@ public class Intake extends Subsystem {
 	}
 	
 	public void ArmReleaseLeft()	{
-		RobotMap.intakeMotorLeftArm.set(0.2);		
+		RobotMap.intakeMotorLeftArm.set(0.4);		
 	}
 
 	public void ArmReleaseRight()	{
-		RobotMap.intakeMotorRightArm.set(-0.2);		
+		RobotMap.intakeMotorRightArm.set(-0.4);		
 	}
 
 	public void ArmReleaseStopLeft()	{
@@ -126,7 +123,7 @@ public class Intake extends Subsystem {
 	
 	public void ArmCloseStopRight()	{
 		RobotMap.intakeMotorRightArm.set(0.0);
-		rightArmMaxLimitCounter.reset();				// Enable Arm Opening
+		rightArmMaxLimitCounter.reset();			// Enable Arm Opening
 	}
 
 }
