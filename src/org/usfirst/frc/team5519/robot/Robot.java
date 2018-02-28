@@ -25,6 +25,7 @@ import org.usfirst.frc.team5519.robot.subsystems.Climber;
 import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
 import org.usfirst.frc.team5519.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5519.robot.subsystems.Intake;
+import org.usfirst.frc.team5519.robot.subsystems.Intake2;
 import org.usfirst.frc.team5519.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
     public static Shooter shooter;
     public static Intake intake;
+    public static Intake2 intake2;
     public static Climber climber;
     public static DriveBase5519 driveBase;
     
@@ -70,6 +72,7 @@ public class Robot extends TimedRobot {
         }
 		shooter = new Shooter();
         intake = new Intake();
+        intake2 = new Intake2();
         climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
