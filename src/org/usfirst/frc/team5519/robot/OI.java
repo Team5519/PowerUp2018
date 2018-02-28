@@ -15,6 +15,7 @@ import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntake;
 import org.usfirst.frc.team5519.robot.commands.Climb;
 import org.usfirst.frc.team5519.robot.commands.CloseIntakeLeft;
+import org.usfirst.frc.team5519.robot.commands.CloseIntakeRight;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
 import org.usfirst.frc.team5519.robot.commands.DeployClimberHook;
 import org.usfirst.frc.team5519.robot.commands.Drop;
@@ -83,14 +84,16 @@ public class OI {
 	public static final int kToggleShootHighButtonNumber = 2;	// X
 	public static final int kToggleShootLowButtonNumber = 3;	// B
 	
-	public static final int kToggleClimberWinchUpButtonNumber = 4;  // 11
-	public static final int kToggleClimberWinchDownButtonNumber = 1;  // 11
+	public static final int kToggleClimberWinchUpButtonNumber = 9;  // 11
+	public static final int kToggleClimberWinchDownButtonNumber = 10;  // 11
 	
-	public static final int kToggleIntakeWheelsInButtonNumber = 8;	// RT
-	public static final int kToggleIntakeWheelsOutButtonNumber = 7;	// LT
+	public static final int kToggleIntakeWheelsInButtonNumber = 1;	// RT
+	public static final int kToggleIntakeWheelsOutButtonNumber = 4;	// LT
 	
-	public static final int kToggleIntakeArmReleaseButtonNumber = 5; // LB
-	public static final int kToggleIntakeArmCloseButtonNumber = 6; 	 // RB
+	public static final int kToggleIntakeArmReleaseLButtonNumber = 5; // LB
+	public static final int kToggleIntakeArmCloseLButtonNumber = 7; 	 // RB
+	public static final int kToggleIntakeArmReleaseRButtonNumber = 8; // LB
+	public static final int kToggleIntakeArmCloseRButtonNumber = 6; 	 // RB
 	
 	//public static final int kToggleAutoDriveStraightButtonNumber = 10; // 10
 	//public static final int kToggleAutoTurnRightButtonNumber = 12;	   // 12
@@ -104,8 +107,10 @@ public class OI {
 	public static Button toggleShootLowButton;
 	public static Button toggleLoadCubeButton;
 	public static Button toggleEjectCubeButton;
-	public static Button toggleArmReleaseButton;
-	public static Button toggleArmCloseButton;
+	public static Button toggleArmReleaseLButton;
+	public static Button toggleArmCloseLButton;
+	public static Button toggleArmReleaseRButton;
+	public static Button toggleArmCloseRButton;
 	
 	public static Button toggleClimberLowArmButton;
 	public static Button toggleClimberTopArmButton;
@@ -153,15 +158,18 @@ public class OI {
 		OI.toggleEjectCubeButton = new JoystickButton(OI.controller, kToggleIntakeWheelsOutButtonNumber);
 		OI.toggleEjectCubeButton.toggleWhenPressed(EjectCube);
 		
-		Command OpenIntake = new OpenIntake();
-		OI.toggleArmReleaseButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseButtonNumber);
-		OI.toggleArmReleaseButton.whileHeld(OpenIntake);
-		//OI.toggleArmReleaseButton.whenPressed(OpenIntake);
-		//Command CloseIntake = new CloseIntakeLeft();
-		Command CloseIntake = new CloseIntake();		// FOR TESTING
-		OI.toggleArmCloseButton = new JoystickButton(OI.controller, kToggleIntakeArmCloseButtonNumber);
-		//OI.toggleArmCloseButton.toggleWhenPressed(CloseIntake);
-		OI.toggleArmCloseButton.whileHeld(CloseIntake);
+		Command OpenIntakeLeft = new OpenIntakeLeft();
+		OI.toggleArmReleaseLButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseLButtonNumber);
+		OI.toggleArmReleaseLButton.whileHeld(OpenIntakeLeft);
+		Command CloseIntakeLeft = new CloseIntakeLeft();		// FOR TESTING
+		OI.toggleArmCloseLButton = new JoystickButton(OI.controller, kToggleIntakeArmCloseLButtonNumber);
+		OI.toggleArmCloseLButton.whileHeld(CloseIntakeLeft);
+		Command OpenIntakeRight = new OpenIntakeRight();
+		OI.toggleArmReleaseRButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseRButtonNumber);
+		OI.toggleArmReleaseRButton.whileHeld(OpenIntakeRight);
+		Command CloseIntakeRight = new CloseIntakeRight();		// FOR TESTING
+		OI.toggleArmCloseRButton = new JoystickButton(OI.controller, kToggleIntakeArmCloseRButtonNumber);
+		OI.toggleArmCloseRButton.whileHeld(CloseIntakeRight);
 		
 		Command DeployLowArm = new DeployClimberArm();
 		OI.toggleClimberLowArmButton = new JoystickButton(OI.driveStick, kToggleClimberLowArmButtonNumber);
