@@ -95,36 +95,39 @@ public class Intake extends Subsystem {
 	
 	public void ArmReleaseLeft()	{
 		RobotMap.intakeMotorLeftArm.set(0.2);		
-		//RobotMap.intakeMotorRightArm.set(-0.2);		
 	}
-	
+
+	public void ArmReleaseRight()	{
+		RobotMap.intakeMotorRightArm.set(-0.2);		
+	}
+
 	public void ArmReleaseStopLeft()	{
 		RobotMap.intakeMotorLeftArm.set(0.0);
 		leftArmMinLimitCounter.reset(); 			// Enable Arm Closing
-		//RobotMap.intakeMotorRightArm.set(0.0);
-	}
-	
-	public void ArmReleaseRight()	{
-		//RobotMap.intakeMotorLeftArm.set(0.2);		
-		RobotMap.intakeMotorRightArm.set(-0.2);		
-	}
+	}	
 	
 	public void ArmReleaseStopRight()	{
 		RobotMap.intakeMotorRightArm.set(0.0);
 		rightArmMinLimitCounter.reset(); 			// Enable Arm Closing
-		leftArmMinLimitCounter.reset();				// FOR TESTING ONLY
-		//RobotMap.intakeMotorRightArm.set(0.0);
 	}
-	
+
 	public void ArmCloseLeft()	{
 		RobotMap.intakeMotorLeftArm.set(-0.2);
-		//RobotMap.intakeMotorRightArm.set(0.2);
+	}
+	
+	public void ArmCloseRight()	{
+		RobotMap.intakeMotorRightArm.set(0.2);
 	}
 	
 	public void ArmCloseStopLeft()	{
 		RobotMap.intakeMotorLeftArm.set(0.0);
 		leftArmMaxLimitCounter.reset();				// Enable Arm Opening
-		//RobotMap.intakeMotorRightArm.set(0.0);
 	}
+	
+	public void ArmCloseStopRight()	{
+		RobotMap.intakeMotorRightArm.set(0.0);
+		rightArmMaxLimitCounter.reset();				// Enable Arm Opening
+	}
+
 }
 

@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
 import org.usfirst.frc.team5519.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5519.robot.subsystems.Climber;
 import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
@@ -131,22 +133,29 @@ public class Robot extends TimedRobot {
 			case "C1":
 				//autonomousCommand = new AutoCenterOne(RobotMap.START_POSITION_CENTRE); 
 				break; 
-			case "Auto Align":
-			case "T1":
-				//autonomousCommand = new AutoAlignToPegTarget(RobotMap.START_POSITION_LEFT);
+			case "DS1":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 1 Meters! ");
+				m_autonomousCommand = new AutoDriveStraightDistance(1.0);
 				break;
-			case "Auto Drive 3m":
-			case "T2":
+			case "DS2":
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 2 Meters! ");
 				m_autonomousCommand = new AutoDriveStraightDistance(2.0);
 				break;
-			case "Auto To Peg":
-			case "T3":
-				//autonomousCommand = new AutoDriveToPegTarget();
+			case "DS3":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 3 Meters! ");
+				m_autonomousCommand = new AutoDriveStraightDistance(3.0);
+				break;
+			case "TR45":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 20 Degrees! ");
+				m_autonomousCommand = new AutoTurnRight(20.0);
+				break;
+			case "TL45":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 20 Degrees! ");
+				m_autonomousCommand = new AutoTurnLeft(20.0);
 				break;
 			case "Auto Default": 
 			default:
-				//autonomousCommand = new AutoRightOne(RobotMap.START_POSITION_LEFT); 
+				m_autonomousCommand = null;
 				break; 
 		}
 		

@@ -27,11 +27,9 @@ public class OpenIntakeRight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return false;
     	boolean isMax = Robot.intake.isRightArmAtMax();
     	Robot.m_oi.messageDriverStation("COMMAND OpenIntakeRight reported AT MAX is = " + isMax);
         return isMax;
-
     }
 
     // Called once after isFinished returns true

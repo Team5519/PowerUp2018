@@ -19,6 +19,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveBase5519 extends Subsystem {
 
+	private static boolean DIRECTION_FORWARD = true;
+	private static boolean DIRECTION_BACKWARD = false;
+	
+	private boolean driveDirection;
+	
 	private double kP = -0.03;
 	private AHRS gyro;
 	
@@ -35,6 +40,7 @@ public class DriveBase5519 extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveBase5519() {
+		driveDirection = DIRECTION_FORWARD;
 		gyro = Robot.ahrs;
 		myDrive = new RobotDrive(RobotMap.driveMotorLeft, RobotMap.driveMotorRight);
 		//myDrive.setInvertedMotor(MotorType.kFrontLeft, true);
@@ -54,30 +60,27 @@ public class DriveBase5519 extends Subsystem {
 	 }
 	    
 	 public double getDistanceTraveled() {
-    	//return ahrs.getDisplacementY();
 	   	return encoder.getDistance();
 	 }
 	 
 	 public double getGyroAngle() {
-	    	//return ahrs.getDisplacementY();
-		   	return gyro.getAngle();
-		 }
-		 
+		 return gyro.getAngle() * -1.0;				// Invert Gyro Heading!
+	 }
+
+	 public void changeDriveDirection() {
+		 driveDirection = !driveDirection;
+	 }
+
 	public void joystickDrive(GenericHID stick) {
-		myDrive.arcadeDrive(stick);
-		/*
-		SmartDashboard.putNumber(   "Joystick/Y-Axis Value",       stick.getY());
-		SmartDashboard.putNumber(   "Joystick/X-Axis Value",       stick.getX());
-		*/
-		/*
+		
  		double moveValue = 1 * stick.getY();
- 		if(!isGearFront)	{
+ 		if(driveDirection == DIRECTION_BACKWARD)	{
  			moveValue = -1 * moveValue;
  		}
-		// Correct left / right by inverting X-Axis values.
-		double rotateValue = -0.7 * stick.getX();
+		// Correct left / right by NOT inverting Y-Axis values.
+		double rotateValue = 0.7 * stick.getX();
 		myDrive.arcadeDrive(moveValue, rotateValue, true);
-		*/
+		//myDrive.arcadeDrive(stick);
 	}
 	
 	/**

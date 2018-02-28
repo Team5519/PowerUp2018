@@ -5,17 +5,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class OpenIntake extends CommandGroup {
+public class CloseIntake extends CommandGroup {
 
-    public OpenIntake() {
+    public CloseIntake() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new OpenIntakeLeft());
+    	addSequential(new CloseIntakeRight());
     	addSequential(new IntakeReset());			// FOR TESTING ONLY!
-    	addSequential(new OpenIntakeRight());
+    	addSequential(new CloseIntakeLeft());
     	addSequential(new IntakeReset());			// FOR TESTING ONLY!
+
 
         // To run multiple commands at the same time,
         // use addParallel()

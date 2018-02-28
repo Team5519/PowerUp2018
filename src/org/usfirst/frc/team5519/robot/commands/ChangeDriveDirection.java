@@ -7,35 +7,32 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseIntakeLeft extends Command {
+public class ChangeDriveDirection extends Command {
 
-    public CloseIntakeLeft() {
+    public ChangeDriveDirection() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
+    	requires(Robot.driveBase);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.intake.resetLeftArmMaxLimitCounter();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.ArmCloseLeft();
+    	Robot.driveBase.stopDead();
+    	Robot.driveBase.changeDriveDirection();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return false;
-    	boolean isMin = Robot.intake.isLeftArmAtMin();
-    	Robot.m_oi.messageDriverStation("COMMAND CloseIntakeLeft reported AT MIN is = " + isMin);
-        return isMin;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.ArmCloseStopLeft();
+    	Robot.driveBase.stopDead();
     }
 
     // Called when another command which requires one or more of the same

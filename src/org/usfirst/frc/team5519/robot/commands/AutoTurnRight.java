@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnRight extends Command {
 
 	private double kP = 0.1;
-	private double kTolerance = 2;
+	private double kTolerance = 2.0;
 	private double requiredAngle;
 	
     public AutoTurnRight(double angle) {
@@ -19,7 +19,6 @@ public class AutoTurnRight extends Command {
         // eg. requires(chassis);
     	requires(Robot.driveBase);
     	requiredAngle = angle;
-    	requiredAngle = 90;
     }
 
     // Called just before this Command runs the first time
@@ -39,7 +38,9 @@ public class AutoTurnRight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
        	double angle = Robot.driveBase.getGyroAngle();
-    	if (Math.abs(requiredAngle - angle) <= kTolerance) {
+       	double angleDelta = Math.abs(requiredAngle - angle);
+   		Robot.m_oi.messageDriverStation("COMMAND AutoTurnRight DELTA angle is = " + angleDelta);
+    	if (angleDelta <= kTolerance) {
     		Robot.m_oi.messageDriverStation("COMMAND AutoTurnRight ARRIVED angle is = " + Robot.driveBase.getGyroAngle());
     		return true;
     	}

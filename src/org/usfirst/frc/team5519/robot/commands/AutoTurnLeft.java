@@ -18,8 +18,7 @@ public class AutoTurnLeft extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveBase);
-    	requiredAngle = angle;
-    	requiredAngle = -90;
+    	requiredAngle = angle * -1.0;		// Invert Angle for Left Turn!
     }
 
     // Called just before this Command runs the first time
@@ -39,8 +38,10 @@ public class AutoTurnLeft extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
        	double angle = Robot.driveBase.getGyroAngle();
-    	if (Math.abs(requiredAngle - angle) <= kTolerance) {
-    		Robot.m_oi.messageDriverStation("COMMAND AutoTurnRight ARRIVED angle is = " + Robot.driveBase.getGyroAngle());
+       	double angleDelta = Math.abs(requiredAngle - angle);
+   		Robot.m_oi.messageDriverStation("COMMAND AutoTurnLeft DELTA angle is = " + angleDelta);
+    	if (angleDelta <= kTolerance) {
+    		Robot.m_oi.messageDriverStation("COMMAND AutoTurnLeft ARRIVED angle is = " + Robot.driveBase.getGyroAngle());
     		return true;
     	}
         return false;
