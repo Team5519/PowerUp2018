@@ -124,6 +124,7 @@ public class Robot extends TimedRobot {
 		String autoSelected = SmartDashboard.getString("Auto Selector","Default");
         m_oi.messageDriverStation("AUTONOMOUS COMMAND = " + autoSelected);
 		switch(autoSelected) { 
+		/*
 			case "Auto Left 1": 
 			case "L1":
 				//autonomousCommand = new AutoLeftOne(RobotMap.START_POSITION_LEFT); 
@@ -135,30 +136,32 @@ public class Robot extends TimedRobot {
 			case "Auto Centre 1": 
 			case "C1":
 				//autonomousCommand = new AutoCenterOne(RobotMap.START_POSITION_CENTRE); 
-				break; 
+				break;
+				*/ 
 			case "DS1":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 1 Meters! ");
-				m_autonomousCommand = new AutoDriveStraightDistance(1.0);
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 1 Meters!");
+				m_autonomousCommand = new AutoDriveStraightDistance(75);
 				break;
 			case "DS2":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 2 Meters! ");
-				m_autonomousCommand = new AutoDriveStraightDistance(2.0);
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 2 Meters!");
+				m_autonomousCommand = new AutoDriveStraightDistance(100);
 				break;
 			case "DS3":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 3 Meters! ");
-				m_autonomousCommand = new AutoDriveStraightDistance(3.0);
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 3 Meters!");
+				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				break;
-			case "TR45":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 20 Degrees! ");
-				m_autonomousCommand = new AutoTurnRight(20.0);
+			case "TR":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 30 Degrees! ");
+				m_autonomousCommand = new AutoTurnRight(30.0);
 				break;
-			case "TL45":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 20 Degrees! ");
-				m_autonomousCommand = new AutoTurnLeft(20.0);
+			case "TL":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 30 Degrees! ");
+				m_autonomousCommand = new AutoTurnLeft(30.0);
 				break;
+				
 			case "Auto Default": 
 			default:
-				m_autonomousCommand = null;
+				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				break; 
 		}
 		

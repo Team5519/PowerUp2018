@@ -27,21 +27,21 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void ShootLow()	{
-		RobotMap.shooterMotorLeft1.set(-0.6);
-		RobotMap.shooterMotorLeft2.set(-0.6);
-		RobotMap.shooterMotorLeft3.set(-0.6);
-		RobotMap.shooterMotorRight1.set(0.6);
-		RobotMap.shooterMotorRight2.set(0.6);
-		RobotMap.shooterMotorRight3.set(0.6);
+		RobotMap.shooterMotorLeft1.set(-0.9);
+		RobotMap.shooterMotorLeft2.set(-0.7);
+		RobotMap.shooterMotorLeft3.set(-0.7);
+		RobotMap.shooterMotorRight1.set(0.9);
+		RobotMap.shooterMotorRight2.set(0.7);
+		RobotMap.shooterMotorRight3.set(0.7);
 	}
 
 	public void ReverseLow()	{
-		RobotMap.shooterMotorLeft1.set(-0.6);
-		RobotMap.shooterMotorLeft2.set(-0.6);
-		RobotMap.shooterMotorLeft3.set(-0.6);
-		RobotMap.shooterMotorRight1.set(0.6);
-		RobotMap.shooterMotorRight2.set(0.6);
-		RobotMap.shooterMotorRight3.set(0.6);
+		RobotMap.shooterMotorLeft1.set(-0.8);
+		RobotMap.shooterMotorLeft2.set(-0.8);
+		RobotMap.shooterMotorLeft3.set(-0.8);
+		RobotMap.shooterMotorRight1.set(0.8);
+		RobotMap.shooterMotorRight2.set(0.8);
+		RobotMap.shooterMotorRight3.set(0.8);
 	}
 
 	public void stop()	{

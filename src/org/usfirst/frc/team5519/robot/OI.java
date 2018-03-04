@@ -75,9 +75,9 @@ public class OI {
 	public static final int kToggleTriggerButtonNumber = 1;
 	public static final int kToggleDriveDirectionButtonNumber = 2;
 	
-	public static final int kToggleClimberLowArmButtonNumber = 7; // 7
-	public static final int kToggleClimberTopArmButtonNumber = 9; // 9
-	public static final int kToggleClimberHookButtonNumber = 11;  // 11
+	public static final int kToggleClimberLowArmButtonNumber = 3; // 7
+	public static final int kToggleClimberTopArmButtonNumber = 4; // 9
+	public static final int kToggleClimberHookButtonNumber = 6;  // 11
 	
 	
 	// These are the buttons on the controller.
@@ -146,17 +146,17 @@ public class OI {
 
 		Command ShootHigh = new ShootHigh();
 		OI.toggleShootHighButton = new JoystickButton(OI.controller, kToggleShootHighButtonNumber);
-		OI.toggleShootHighButton.toggleWhenPressed(ShootHigh);
+		OI.toggleShootHighButton.whileHeld(ShootHigh);
 		Command ShootLow = new ShootLow();
 		OI.toggleShootLowButton = new JoystickButton(OI.controller, kToggleShootLowButtonNumber);
-		OI.toggleShootLowButton.toggleWhenPressed(ShootLow);
+		OI.toggleShootLowButton.whileHeld(ShootLow);
 		
 		Command LoadCube = new LoadCube();
 		OI.toggleLoadCubeButton = new JoystickButton(OI.controller, kToggleIntakeWheelsInButtonNumber);
-		OI.toggleLoadCubeButton.toggleWhenPressed(LoadCube);
+		OI.toggleLoadCubeButton.whileHeld(LoadCube);
 		Command EjectCube = new EjectCube();
 		OI.toggleEjectCubeButton = new JoystickButton(OI.controller, kToggleIntakeWheelsOutButtonNumber);
-		OI.toggleEjectCubeButton.toggleWhenPressed(EjectCube);
+		OI.toggleEjectCubeButton.whileHeld(EjectCube);
 		
 		Command OpenIntakeLeft = new OpenIntakeLeft();
 		OI.toggleArmReleaseLButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseLButtonNumber);

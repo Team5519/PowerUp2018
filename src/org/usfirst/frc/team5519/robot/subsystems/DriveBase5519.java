@@ -60,7 +60,7 @@ public class DriveBase5519 extends Subsystem {
 	 }
 	    
 	 public double getDistanceTraveled() {
-	   	return encoder.getDistance();
+	   	return encoder.getDistance()*-1.0;
 	 }
 	 
 	 public double getGyroAngle() {
@@ -78,7 +78,7 @@ public class DriveBase5519 extends Subsystem {
  			moveValue = -1 * moveValue;
  		}
 		// Correct left / right by NOT inverting Y-Axis values.
-		double rotateValue = 0.7 * stick.getX();
+		double rotateValue = 1.0 * stick.getX();
 		myDrive.arcadeDrive(moveValue, rotateValue, true);
 		//myDrive.arcadeDrive(stick);
 	}

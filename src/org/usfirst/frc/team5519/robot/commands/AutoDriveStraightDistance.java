@@ -10,23 +10,27 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoDriveStraightDistance extends Command {
 	
-	private double requiredDistance;
+	private int requiredDistance;
+	private int timeCount;
 
-    public AutoDriveStraightDistance(double distance) {
+    public AutoDriveStraightDistance(int distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveBase);
     	requiredDistance = distance;
+    	timeCount = 0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveBase.stopDead();
     	Robot.driveBase.resetDriveSensors();
+    	timeCount = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	/*
     	Robot.m_oi.messageDriverStation("COMMAND AutoDriveStraightDistance reported distance is = " + 
     			Robot.driveBase.getDistanceTraveled());
     	Robot.m_oi.messageDriverStation("COMMAND AutoDriveStraightDistance reported angle is = " + 
@@ -36,14 +40,24 @@ public class AutoDriveStraightDistance extends Command {
         	Robot.driveBase.autoDriveStraight(RobotMap.AUTO_SLOW_SPEED);
         } else {
         	Robot.driveBase.autoDriveStraight(RobotMap.AUTO_FAST_SPEED);
-        }
+        }*/
+    	Robot.driveBase.autoDriveStraight(RobotMap.AUTO_FAST_SPEED);
+    	timeCount = timeCount + 1;
+
+    	
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	/*
     	if (Math.abs(Robot.driveBase.getDistanceTraveled()) >= requiredDistance) {
     		Robot.m_oi.messageDriverStation("COMMAND DriveStraightDistance ARRIVED distance is = " + Robot.driveBase.getDistanceTraveled());
+    		return true;
+    	}
+    	*/
+		Robot.m_oi.messageDriverStation("COMMAND DriveStraightDistance TIMECOUNT distance is = " + timeCount);
+    	if (timeCount > requiredDistance) {
     		return true;
     	}
         return false;
