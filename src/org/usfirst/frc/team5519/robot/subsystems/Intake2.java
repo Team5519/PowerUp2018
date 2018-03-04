@@ -20,6 +20,7 @@ public class Intake2 extends Subsystem {
 	public void WheelsRotateLoadDirection()	{
 		RobotMap.intakeMotorLeftWheel.set(1.0);
 		RobotMap.intakeMotorRightWheel.set(-1.0);
+<<<<<<< HEAD
 		RobotMap.shooterMotorLeft1.set(-0.9);
 		RobotMap.shooterMotorLeft2.set(-0.6);
 		RobotMap.shooterMotorLeft3.set(-0.6);
@@ -27,6 +28,11 @@ public class Intake2 extends Subsystem {
 		RobotMap.shooterMotorRight2.set(0.6);
 		RobotMap.shooterMotorRight3.set(0.6);
 	}	
+=======
+		RobotMap.shooterMotorLeft1.set(-0.3);
+		RobotMap.shooterMotorRight1.set(0.3);
+	}
+>>>>>>> 922ae1e56dae87cf85401bc5b456fe5b80d0ed92
 
 	public void WheelsRotateEjectDirection()	{
 		RobotMap.intakeMotorLeftWheel.set(-1.0);
@@ -37,11 +43,15 @@ public class Intake2 extends Subsystem {
 		RobotMap.intakeMotorLeftWheel.set(0.0);
 		RobotMap.intakeMotorRightWheel.set(0.0);
 		RobotMap.shooterMotorLeft1.set(0.0);
+<<<<<<< HEAD
 		RobotMap.shooterMotorLeft2.set(0.0);
 		RobotMap.shooterMotorLeft3.set(0.0);
 		RobotMap.shooterMotorRight1.set(0.0);
 		RobotMap.shooterMotorRight2.set(0.0);
 		RobotMap.shooterMotorRight3.set(0.0);
+=======
+		RobotMap.shooterMotorRight1.set(0.0);
+>>>>>>> 922ae1e56dae87cf85401bc5b456fe5b80d0ed92
 	}
 	
 }
