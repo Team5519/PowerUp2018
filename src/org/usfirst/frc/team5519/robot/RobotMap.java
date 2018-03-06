@@ -30,6 +30,10 @@ public class RobotMap {
 	
 	// Constants and Global Variables
 	
+	public final static int START_POSITION_RIGHT = 0;
+	public final static int START_POSITION_CENTRE = 1;
+	public final static int START_POSITION_LEFT = 2;
+	
 	public final static double AUTO_FAST_SPEED = 0.7;
 	public final static double AUTO_MEDIUM_SPEED = 0.5;
 	public final static double AUTO_SLOW_SPEED = 0.3;
@@ -163,6 +167,9 @@ public class RobotMap {
 	public static void init() {
 		driveMotorLeft = new Spark(kDriveMotorLeftPort);
 		driveMotorRight = new Spark(kDriveMotorRightPort);
+		driveMotorLeft.enableDeadbandElimination(true);
+		driveMotorRight.enableDeadbandElimination(true);
+		
         EncoderAMT10V = new Encoder(kEncoderDioPortA,kEncoderDioPortB,false,Encoder.EncodingType.k2X);
 		
 		shooterMotorLeft1 = new VictorSP(kShooterMotorLeft1Port);

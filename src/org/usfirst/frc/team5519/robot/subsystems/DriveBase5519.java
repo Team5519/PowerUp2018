@@ -6,12 +6,10 @@ import org.usfirst.frc.team5519.robot.commands.DriveWithJoystick;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -75,10 +73,10 @@ public class DriveBase5519 extends Subsystem {
 		
  		double moveValue = 1 * stick.getY();
  		if(driveDirection == DIRECTION_BACKWARD)	{
- 			moveValue = -1 * moveValue;
+ 			moveValue = 1 * moveValue;
  		}
 		// Correct left / right by NOT inverting Y-Axis values.
-		double rotateValue = 1.0 * stick.getX();
+		double rotateValue = 1 * stick.getX();
 		myDrive.arcadeDrive(moveValue, rotateValue, true);
 		//myDrive.arcadeDrive(stick);
 	}

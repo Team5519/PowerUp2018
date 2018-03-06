@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team5519.robot;
 
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
@@ -17,10 +16,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
-import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
-import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
-import org.usfirst.frc.team5519.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDriveStraightDistance;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoTurnLeft;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoTurnRight;
 import org.usfirst.frc.team5519.robot.subsystems.Climber;
 import org.usfirst.frc.team5519.robot.subsystems.DriveBase5519;
 import org.usfirst.frc.team5519.robot.subsystems.ExampleSubsystem;
@@ -52,8 +50,6 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
-	private UsbCamera camera;
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -76,8 +72,8 @@ public class Robot extends TimedRobot {
         climber = new Climber();
         driveBase = new DriveBase5519();
 		m_oi = new OI();
-		camera = CameraServer.getInstance().startAutomaticCapture("Intake View",0);
-		camera = CameraServer.getInstance().startAutomaticCapture("Climber View",1);
+		CameraServer.getInstance().startAutomaticCapture("Intake View",0);
+		CameraServer.getInstance().startAutomaticCapture("Climber View",1);
 		
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -138,6 +134,8 @@ public class Robot extends TimedRobot {
 				//autonomousCommand = new AutoCenterOne(RobotMap.START_POSITION_CENTRE); 
 				break;
 				*/ 
+		
+			// Drive straight auto commands
 			case "DS1":
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 1 Meters!");
 				m_autonomousCommand = new AutoDriveStraightDistance(75);
@@ -150,17 +148,18 @@ public class Robot extends TimedRobot {
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 3 Meters!");
 				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				break;
+				
+			// Auto commands for testing
 			case "Autoturnright":
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving straight and turning Right 30 Degrees! ");
-				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				m_autonomousCommand = new AutoTurnRight(30.0);
 				break;
 			case "Autoturnleft":
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 30 Degrees! ");
-				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				m_autonomousCommand = new AutoTurnLeft(30.0);
 				break;
-				
+			
+			// Default auto command
 			case "Auto Default": 
 			default:
 				m_autonomousCommand = new AutoDriveStraightDistance(150);
