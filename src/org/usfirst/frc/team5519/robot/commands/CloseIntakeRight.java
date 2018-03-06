@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5519.robot.commands.Intake;
+package org.usfirst.frc.team5519.robot.commands;
 
 import org.usfirst.frc.team5519.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeReset extends Command {
+public class CloseIntakeRight extends Command {
 
-    public IntakeReset() {
+    public CloseIntakeRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
+    	//requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -21,19 +21,19 @@ public class IntakeReset extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.resetLeftArmMaxLimitCounter();
-    	Robot.intake.resetLeftArmMinLimitCounter();
-    	Robot.intake.resetRightArmMaxLimitCounter();
-    	Robot.intake.resetRightArmMinLimitCounter();
+    	Robot.intake.ArmCloseRight();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	boolean isMin = Robot.intake.isRightArmAtMin();
+    	Robot.m_oi.messageDriverStation("COMMAND CloseIntakeRight reported AT MIN is = " + isMin);
+        return isMin;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intake.ArmCloseStopRight();
     }
 
     // Called when another command which requires one or more of the same

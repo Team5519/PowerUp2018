@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5519.robot.commands.Climber;
+package org.usfirst.frc.team5519.robot.commands;
 
 import org.usfirst.frc.team5519.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RetractClimber extends Command {
+public class EjectCube extends Command {
 
-    public RetractClimber() {
+    public EjectCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(Robot.intakeandShootLow);
     }
 
     // Called just before this Command runs the first time
@@ -21,9 +21,8 @@ public class RetractClimber extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.retractHook();
-    	Robot.climber.retractTopArm();
-    	Robot.climber.retractLowArm();
+    	Robot.intakeandShootLow.WheelsRotateEjectDirection();
+    	Robot.shooter.ReverseLow();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,6 +32,7 @@ public class RetractClimber extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intakeandShootLow.WheelsRotationStop();
     }
 
     // Called when another command which requires one or more of the same

@@ -7,20 +7,27 @@
 
 package org.usfirst.frc.team5519.robot;
 
+import org.usfirst.frc.team5519.robot.commands.AutoDriveStraightDistance;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnLeft;
+import org.usfirst.frc.team5519.robot.commands.AutoTurnRight;
 import org.usfirst.frc.team5519.robot.commands.ChangeDriveDirection;
-import org.usfirst.frc.team5519.robot.commands.Shooter.ShootHigh;
-import org.usfirst.frc.team5519.robot.commands.Shooter.ShootLow;
-import org.usfirst.frc.team5519.robot.commands.Climber.Climb;
-import org.usfirst.frc.team5519.robot.commands.Climber.DeployClimberArm;
-import org.usfirst.frc.team5519.robot.commands.Climber.DeployClimberHook;
-import org.usfirst.frc.team5519.robot.commands.Climber.Drop;
-import org.usfirst.frc.team5519.robot.commands.Climber.RetractClimber;
-import org.usfirst.frc.team5519.robot.commands.Intake.CloseIntakeLeft;
-import org.usfirst.frc.team5519.robot.commands.Intake.CloseIntakeRight;
-import org.usfirst.frc.team5519.robot.commands.Intake.EjectCube;
-import org.usfirst.frc.team5519.robot.commands.Intake.LoadCube;
-import org.usfirst.frc.team5519.robot.commands.Intake.OpenIntakeLeft;
-import org.usfirst.frc.team5519.robot.commands.Intake.OpenIntakeRight;
+import org.usfirst.frc.team5519.robot.commands.Climb;
+import org.usfirst.frc.team5519.robot.commands.CloseIntake;
+import org.usfirst.frc.team5519.robot.commands.Climb;
+import org.usfirst.frc.team5519.robot.commands.CloseIntakeLeft;
+import org.usfirst.frc.team5519.robot.commands.CloseIntakeRight;
+import org.usfirst.frc.team5519.robot.commands.DeployClimberArm;
+import org.usfirst.frc.team5519.robot.commands.DeployClimberHook;
+import org.usfirst.frc.team5519.robot.commands.Drop;
+import org.usfirst.frc.team5519.robot.commands.EjectCube;
+import org.usfirst.frc.team5519.robot.commands.LoadCube;
+import org.usfirst.frc.team5519.robot.commands.OpenIntake;
+import org.usfirst.frc.team5519.robot.commands.ShootHigh;
+import org.usfirst.frc.team5519.robot.commands.ShootLow;
+import org.usfirst.frc.team5519.robot.subsystems.Climber;
+import org.usfirst.frc.team5519.robot.commands.OpenIntakeLeft;
+import org.usfirst.frc.team5519.robot.commands.OpenIntakeRight;
+import org.usfirst.frc.team5519.robot.commands.RetractClimber;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -90,19 +97,19 @@ public class OI {
 	 * Back = 10
 	 */
 	
-	// Shooting
+	//Shooting
 	public static final int kToggleShootHighButtonNumber = 2;
 	public static final int kToggleShootLowButtonNumber = 3;
 	
-	// Winch
+	//Winch
 	public static final int kToggleClimberWinchUpButtonNumber = 9;
 	public static final int kToggleClimberWinchDownButtonNumber = 10;
 	
-	// Intake Wheels
+	//Intake Wheels
 	public static final int kToggleIntakeWheelsInButtonNumber = 1;
 	public static final int kToggleIntakeWheelsOutButtonNumber = 4;
 	
-	// Intake Arms
+	//Intake Arms
 	public static final int kToggleIntakeArmReleaseLButtonNumber = 7;
 	public static final int kToggleIntakeArmCloseLButtonNumber = 5;
 	public static final int kToggleIntakeArmReleaseRButtonNumber = 8;
@@ -154,12 +161,12 @@ public class OI {
 		OI.driveStick = new Joystick(kDriveStickPort);
 		OI.controller = new XboxController(kXboxControllerPort);
 		
-		// Driving
+		//Driving
 		Command ChangeDriveDirection = new ChangeDriveDirection();
 		OI.toggleDriveDirectionButton = new JoystickButton(OI.driveStick, kToggleDriveDirectionButtonNumber);
 		OI.toggleDriveDirectionButton.toggleWhenPressed(ChangeDriveDirection);
 		
-		// Shooter
+		//Shooter
 		Command ShootHigh = new ShootHigh();
 		OI.toggleShootHighButton = new JoystickButton(OI.controller, kToggleShootHighButtonNumber);
 		OI.toggleShootHighButton.whileHeld(ShootHigh);
@@ -167,7 +174,7 @@ public class OI {
 		OI.toggleShootLowButton = new JoystickButton(OI.controller, kToggleShootLowButtonNumber);
 		OI.toggleShootLowButton.whileHeld(ShootLow);
 		
-		// Intake Wheels and Shooter
+		//Intake Wheels and Shooter
 		Command LoadCube = new LoadCube();
 		OI.toggleLoadCubeButton = new JoystickButton(OI.controller, kToggleIntakeWheelsInButtonNumber);
 		OI.toggleLoadCubeButton.whileHeld(LoadCube);
@@ -175,7 +182,7 @@ public class OI {
 		OI.toggleEjectCubeButton = new JoystickButton(OI.controller, kToggleIntakeWheelsOutButtonNumber);
 		OI.toggleEjectCubeButton.whileHeld(EjectCube);
 		
-		// Intake Arms
+		//Intake Arms
 		Command OpenIntakeLeft = new OpenIntakeLeft();
 		OI.toggleArmReleaseLButton = new JoystickButton(OI.controller, kToggleIntakeArmReleaseLButtonNumber);
 		OI.toggleArmReleaseLButton.whileHeld(OpenIntakeLeft);
@@ -189,7 +196,7 @@ public class OI {
 		OI.toggleArmCloseRButton = new JoystickButton(OI.controller, kToggleIntakeArmCloseRButtonNumber);
 		OI.toggleArmCloseRButton.whileHeld(CloseIntakeRight);
 		
-		// Climber Arm
+		//Climber Arm
 		Command DeployLowArm = new DeployClimberArm();
 		OI.toggleClimberLowArmButton = new JoystickButton(OI.driveStick, kToggleClimberLowArmButtonNumber);
 		OI.toggleClimberLowArmButton.toggleWhenPressed(DeployLowArm);
@@ -200,7 +207,7 @@ public class OI {
 		OI.toggleClimberHookButton = new JoystickButton(OI.driveStick, kToggleClimberHookButtonNumber);
 		OI.toggleClimberHookButton.toggleWhenPressed(RetractHook);
 		
-		// Winch
+		//Winch
 		Command Climb = new Climb();
 		OI.toggleClimberWinchUpButton = new JoystickButton(OI.controller, kToggleClimberWinchUpButtonNumber);
 		OI.toggleClimberWinchUpButton.toggleWhenPressed(Climb);
