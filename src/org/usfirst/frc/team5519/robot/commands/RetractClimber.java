@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RetractClimberHook extends Command {
+public class RetractClimber extends Command {
 
-    public RetractClimberHook() {
+    public RetractClimber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
@@ -22,8 +22,8 @@ public class RetractClimberHook extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.climber.retractHook();
+    	Robot.climber.retractTopArm();
     	Robot.climber.retractLowArm();
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

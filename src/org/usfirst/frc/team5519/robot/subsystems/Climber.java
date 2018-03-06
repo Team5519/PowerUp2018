@@ -29,6 +29,10 @@ public class Climber extends Subsystem {
     	RobotMap.climberTopSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     
+    public void retractTopArm()	{
+    	RobotMap.climberTopSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
+    
     public void retractHook()	{
     	RobotMap.climberTopSolenoid.set(DoubleSolenoid.Value.kReverse);
     }

@@ -75,20 +75,6 @@ public class Intake extends Subsystem {
 		return (rightArmMinLimitCounter.get() > 0);
     }
 
-	public void WheelsRotateLoadDirection()	{
-		RobotMap.intakeMotorLeftWheel.set(0.8);
-		RobotMap.intakeMotorRightWheel.set(-0.8);
-	}
-
-	public void WheelsRotateEjectDirection()	{
-		RobotMap.intakeMotorLeftWheel.set(-0.8);
-		RobotMap.intakeMotorRightWheel.set(0.8);
-	}
-
-	public void WheelsRotationStop()	{
-		RobotMap.intakeMotorLeftWheel.set(0.0);
-		RobotMap.intakeMotorRightWheel.set(0.0);
-	}
 	
 	public void ArmReleaseLeft()	{
 		RobotMap.intakeMotorLeftArm.set(0.4);		
