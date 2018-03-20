@@ -16,6 +16,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverFarLeft;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverFarRight;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverLeft;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverLeftMiddle;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverMiddle;
+import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDeliverRight;
 import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoDriveStraightDistance;
 import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoTurnLeft;
 import org.usfirst.frc.team5519.robot.commands.Autonomous.AutoTurnRight;
@@ -50,12 +56,15 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
+	public String autoGameData;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		autoGameData = "";
 		RobotMap.init ();
         // GyroSamples
         try {
@@ -116,26 +125,44 @@ public class Robot extends TimedRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		
+		autoGameData = DriverStation.getInstance().getGameSpecificMessage();
+		boolean isSwitchLocationLeft = true;
+		if (autoGameData.length() > 0) {
+			if (autoGameData.charAt(0) == 'R') {
+				isSwitchLocationLeft = false;
+			}
+		}
 
 		String autoSelected = SmartDashboard.getString("Auto Selector","Default");
         m_oi.messageDriverStation("AUTONOMOUS COMMAND = " + autoSelected);
 		switch(autoSelected) { 
-		/*
-			case "Auto Left 1": 
-			case "L1":
-				//autonomousCommand = new AutoLeftOne(RobotMap.START_POSITION_LEFT); 
-				break; 
-			case "Auto Right 1": 
-			case "R1":
-				//autonomousCommand = new AutoRightOne(RobotMap.START_POSITION_RIGHT); 
-				break; 
-			case "Auto Centre 1": 
-			case "C1":
-				//autonomousCommand = new AutoCenterOne(RobotMap.START_POSITION_CENTRE); 
-				break;
-				*/ 
-		
 			// Drive straight auto commands
+			case "Left":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Starting position left!");
+				if (isSwitchLocationLeft) {
+					m_autonomousCommand = new AutoDeliverLeft();
+				} else {
+					m_autonomousCommand = new AutoDeliverFarRight();
+				}
+				break;
+				
+			case "Middle":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Starting position middle!");
+				if (isSwitchLocationLeft) {
+					m_autonomousCommand = new AutoDeliverLeftMiddle();
+				} else {
+					m_autonomousCommand = new AutoDeliverMiddle();
+				}
+			case "Right":
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Starting position left!");
+				if (isSwitchLocationLeft) {
+					m_autonomousCommand = new AutoDeliverRight();
+				} else {
+					m_autonomousCommand = new AutoDeliverFarLeft();
+				}
+				break;
+
 			case "DS1":
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 1 Meters!");
 				m_autonomousCommand = new AutoDriveStraightDistance(75);
