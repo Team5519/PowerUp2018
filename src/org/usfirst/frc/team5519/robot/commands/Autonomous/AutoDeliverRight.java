@@ -26,9 +26,9 @@ public class AutoDeliverRight extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new AutoDriveStraightDistance(75));
+    	addSequential(new AutoDriveStraightDistance(150));
     	addSequential(new AutoTurnLeft(90));
-    	addSequential(new AutoDriveStraightDistance(50));
+    	addSequential(new AutoDriveStraightDistance(75));
     	addSequential(new ShootLow());
     }
 }

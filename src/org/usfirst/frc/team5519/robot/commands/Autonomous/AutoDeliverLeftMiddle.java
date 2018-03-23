@@ -28,9 +28,9 @@ public class AutoDeliverLeftMiddle extends CommandGroup {
         // arm.
     	addSequential(new AutoDriveStraightDistance(25));
     	addSequential(new AutoTurnLeft(90));
-    	addSequential(new AutoDriveStraightDistance(100));
+    	addSequential(new AutoDriveStraightDistance(125));
     	addSequential(new AutoTurnRight(90));
-    	addSequential(new AutoDriveStraightDistance(50));
+    	addSequential(new AutoDriveStraightDistance(100));
     	addSequential(new ShootLow());
     }
 }

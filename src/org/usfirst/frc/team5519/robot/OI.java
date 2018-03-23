@@ -69,7 +69,6 @@ public class OI {
 	 */
 	
 	//Driving
-	public static final int kToggleTriggerButtonNumber = 1;
 	public static final int kToggleDriveDirectionButtonNumber = 2;
 	
 	//Climber Arm
@@ -78,41 +77,35 @@ public class OI {
 	public static final int kToggleClimberHookButtonNumber = 6;
 	
 	/**Button Numbers for the Controller
-	 * X = 1
-	 * A = 2
-	 * B = 3
+	 * X = 3
+	 * A = 1
+	 * B = 2
 	 * Y = 4
 	 * LB = 5
 	 * RB = 6
-	 * LT = 7
-	 * RT = 8
-	 * Start = 9
-	 * Back = 10
+	 * LT = 
+	 * RT = 
+	 * Start = 8
+	 * Back = 7
 	 */
 	
 	// Shooting
-	public static final int kToggleShootHighButtonNumber = 2;
-	public static final int kToggleShootLowButtonNumber = 3;
+	public static final int kToggleShootHighButtonNumber = 1;
+	public static final int kToggleShootLowButtonNumber = 2;
 	
 	// Winch
-	public static final int kToggleClimberWinchUpButtonNumber = 9;
-	public static final int kToggleClimberWinchDownButtonNumber = 10;
+	public static final int kToggleClimberWinchUpButtonNumber = 8;
+	public static final int kToggleClimberWinchDownButtonNumber = 7;
 	
 	// Intake Wheels
-	public static final int kToggleIntakeWheelsInButtonNumber = 1;
+	public static final int kToggleIntakeWheelsInButtonNumber = 3;
 	public static final int kToggleIntakeWheelsOutButtonNumber = 4;
 	
 	// Intake Arms
-	public static final int kToggleIntakeArmReleaseLButtonNumber = 7;
+	public static final int kToggleIntakeArmReleaseLButtonNumber = 9;
 	public static final int kToggleIntakeArmCloseLButtonNumber = 5;
-	public static final int kToggleIntakeArmReleaseRButtonNumber = 8;
+	public static final int kToggleIntakeArmReleaseRButtonNumber = 10;
 	public static final int kToggleIntakeArmCloseRButtonNumber = 6;
-	
-	/**
-	public static final int kToggleAutoDriveStraightButtonNumber = 10;
-	public static final int kToggleAutoTurnRightButtonNumber = 12;
-	public static final int kToggleAutoTurnLeftButtonNumber = 8;   
-	*/
 	
 	// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -208,16 +201,6 @@ public class OI {
 		OI.toggleClimberWinchDownButton = new JoystickButton(OI.controller, kToggleClimberWinchDownButtonNumber);
 		OI.toggleClimberWinchDownButton.whileHeld(Drop);
 		
-		//Command AutoDriveStraight = new AutoDriveStraightDistance(3.0);
-		//OI.toggleAutoDriveStraightButton = new JoystickButton(OI.driveStick, kToggleAutoDriveStraightButtonNumber);
-		//OI.toggleAutoDriveStraightButton.toggleWhenPressed(AutoDriveStraight);
-		//Command AutoTurnRight = new AutoTurnRight(90.0);
-		//OI.toggleAutoTurnRightButton = new JoystickButton(OI.driveStick, kToggleAutoTurnRightButtonNumber);
-		//OI.toggleAutoTurnRightButton.toggleWhenPressed(AutoTurnRight);
-		//Command AutoTurnLeft = new AutoTurnLeft(90.0);
-		//OI.toggleAutoTurnLeftButton = new JoystickButton(OI.driveStick, kToggleAutoTurnLeftButtonNumber);
-		//OI.toggleAutoTurnLeftButton.toggleWhenPressed(AutoTurnLeft);
-
 	}
 	
 }

@@ -31,8 +31,8 @@ public class AutoTurnRight extends Command {
     protected void execute() {
        	Robot.m_oi.messageDriverStation("COMMAND AutoTurnRight reported angle is = " + Robot.driveBase.getGyroAngle());
        	double angle = Robot.driveBase.getGyroAngle();
-       	double increment = (requiredAngle - angle) * kP * -1.0;
-       	Robot.driveBase.autoDrive(RobotMap.AUTO_SLOW_SPEED,increment);
+       	double increment = (requiredAngle - angle) * kP * -0.08;
+       	Robot.driveBase.autoDrive(0.1,0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

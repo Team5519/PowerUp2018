@@ -26,7 +26,7 @@ public class AutoDeliverMiddle extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new AutoDriveStraightDistance(75));
+    	addSequential(new AutoDriveStraightDistance(125));
     	addSequential(new ShootLow());
     }
 }

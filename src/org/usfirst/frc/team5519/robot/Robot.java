@@ -175,17 +175,7 @@ public class Robot extends TimedRobot {
 				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving 3 Meters!");
 				m_autonomousCommand = new AutoDriveStraightDistance(150);
 				break;
-				
-			// Auto commands for testing
-			case "Autoturnright":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Driving straight and turning Right 30 Degrees! ");
-				m_autonomousCommand = new AutoTurnRight(30.0);
-				break;
-			case "Autoturnleft":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Turning Right 30 Degrees! ");
-				m_autonomousCommand = new AutoTurnLeft(30.0);
-				break;
-			
+					
 			// Default auto command
 			case "Auto Default": 
 			default:
