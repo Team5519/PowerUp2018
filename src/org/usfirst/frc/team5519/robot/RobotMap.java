@@ -22,12 +22,6 @@ import edu.wpi.first.wpilibj.VictorSP;
  * floating around.
  */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-	
-	
 	// Constants and Global Variables
 	
 	public final static int START_POSITION_RIGHT = 0;
@@ -158,11 +152,6 @@ public class RobotMap {
         }
         return roborio_channel;
     }
-	
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 	
 	public static void init() {
 		driveMotorLeft = new Spark(kDriveMotorLeftPort);

@@ -127,6 +127,11 @@ public class Robot extends TimedRobot {
 		 */
 		
 		autoGameData = DriverStation.getInstance().getGameSpecificMessage();
+		int loopCount = 0;
+		while ((autoGameData == null) || (autoGameData.length() < 2) || (loopCount < 200)) {
+			autoGameData = DriverStation.getInstance().getGameSpecificMessage();
+			loopCount++;
+		}
 		boolean isSwitchLocationLeft = true;
 		if (autoGameData.length() > 0) {
 			if (autoGameData.charAt(0) == 'R') {
@@ -155,7 +160,7 @@ public class Robot extends TimedRobot {
 					m_autonomousCommand = new AutoDeliverMiddle();
 				}
 			case "Right":
-				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Starting position left!");
+				m_oi.messageDriverStation("AUTONOMOUS COMMAND :: Starting position right!");
 				if (isSwitchLocationLeft) {
 					m_autonomousCommand = new AutoDeliverRight();
 				} else {

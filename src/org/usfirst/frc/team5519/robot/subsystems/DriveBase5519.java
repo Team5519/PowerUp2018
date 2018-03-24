@@ -73,7 +73,7 @@ public class DriveBase5519 extends Subsystem {
 		
  		double moveValue = 1 * stick.getY();
  		if(driveDirection == DIRECTION_BACKWARD)	{
- 			moveValue = 1 * moveValue;
+ 			moveValue = -1 * moveValue;
  		}
 		// Correct left / right by NOT inverting Y-Axis values.
 		double rotateValue = 1 * stick.getX();

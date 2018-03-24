@@ -37,17 +37,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a my joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
 	
     public static boolean doMessageDriverStation = true;
     
@@ -94,8 +83,8 @@ public class OI {
 	public static final int kToggleShootLowButtonNumber = 2;
 	
 	// Winch
-	public static final int kToggleClimberWinchUpButtonNumber = 8;
-	public static final int kToggleClimberWinchDownButtonNumber = 7;
+	public static final int kToggleClimberWinchUpButtonNumber = 7;
+	public static final int kToggleClimberWinchDownButtonNumber = 8;
 	
 	// Intake Wheels
 	public static final int kToggleIntakeWheelsInButtonNumber = 3;
@@ -125,22 +114,6 @@ public class OI {
 	public static Button toggleClimberHookButton;
 	public static Button toggleClimberWinchUpButton;
 	public static Button toggleClimberWinchDownButton;
-	
-	//public static Button toggleAutoDriveStraightButton;
-	//public static Button toggleAutoTurnRightButton;
-	//public static Button toggleAutoTurnLeftButton;
-	
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 	
 	public OI() {
 				
@@ -196,7 +169,7 @@ public class OI {
 		// Winch
 		Command Climb = new Climb();
 		OI.toggleClimberWinchUpButton = new JoystickButton(OI.controller, kToggleClimberWinchUpButtonNumber);
-		OI.toggleClimberWinchUpButton.toggleWhenPressed(Climb);
+		OI.toggleClimberWinchUpButton.whileHeld(Climb);
 		Command Drop = new Drop();
 		OI.toggleClimberWinchDownButton = new JoystickButton(OI.controller, kToggleClimberWinchDownButtonNumber);
 		OI.toggleClimberWinchDownButton.whileHeld(Drop);
